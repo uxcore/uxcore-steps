@@ -1,0 +1,122 @@
+/**
+ * Steps Component Style for uxcore
+ * @author vincent.bian
+ *
+ * Copyright 2014-2015, Uxcore Team, Alinw.
+ * All rights reserved.
+ */
+.kuma-step-item {
+  position: relative;
+  display: inline-block;
+  min-height: 40px;
+  vertical-align: top;
+}
+.kuma-step-tail {
+  position: absolute;
+  left: 0;
+  top: 19px;
+  padding: 0 6px 0 28px;
+  width: 100%;
+}
+.kuma-step-tail > i {
+  display: block;
+  width: 100%;
+  height: 0;
+  border-bottom: 2px solid #ccc;
+}
+.kuma-step-head {
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+.kuma-step-head .kuma-step-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  border: 1px solid #88c438;
+  text-align: center;
+  line-height: 22px;
+  font-size: 14px;
+}
+.kuma-step-main {
+  color: #999;
+}
+.kuma-step-main .kuma-step-title {
+  margin-left: 30px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.kuma-step-main .kuma-step-description {
+  margin-top: 16px;
+  text-indent: -10px;
+}
+.kuma-step-status-finish .kuma-step-icon {
+  background-color: #88c438;
+  color: #fff;
+}
+.kuma-step-status-finish .kuma-step-icon:after {
+  font-family: 'kuma' !important;
+  content: '\e611';
+}
+.kuma-step-status-finish.kuma-step-item .kuma-step-tail i {
+  border-color: #88c438;
+}
+.kuma-step-status-process .kuma-step-icon {
+  background-color: #88c438;
+  color: #fff;
+}
+.kuma-step-status-wait .kuma-step-icon {
+  background-color: #fff;
+  border-color: #ccc;
+  color: #ccc;
+}
+.kuma-step-vertical .kuma-step-head {
+  top: 0;
+}
+.kuma-step-vertical .kuma-step-item {
+  display: block;
+}
+.kuma-step-vertical .kuma-step-tail {
+  left: 12px;
+  top: 0;
+  padding: 26px 0 2px 0;
+  width: 0;
+  height: 100%;
+}
+.kuma-step-vertical .kuma-step-tail i {
+  width: 0;
+  height: 100%;
+  border-bottom: 0 none;
+  border-left: 2px solid #ccc;
+}
+.kuma-step-vertical .kuma-step-main {
+  padding: 2px 0 0 30px;
+}
+.kuma-step-vertical .kuma-step-main .kuma-step-title {
+  margin-left: 0;
+}
+.kuma-step-vertical .kuma-step-main .kuma-step-description {
+  margin-top: 4px;
+  text-indent: 0;
+}
+.kuma-step-small .kuma-step-head .kuma-step-icon {
+  font-size: 12px;
+}
+.kuma-step-small .kuma-step-tail {
+  top: 16px;
+  padding: 0 6px 0 22px;
+}
+.kuma-step-small.kuma-step-vertical .kuma-step-tail {
+  left: 8px;
+  top: 0;
+  padding: 20px 0 2px 0;
+}
+.kuma-step-small .kuma-step-head .kuma-step-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  line-height: 16px;
+}
+
+/*# sourceMappingURL=Steps.css.map */
