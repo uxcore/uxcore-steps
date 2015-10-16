@@ -84,12 +84,6 @@ class Demo extends React.Component {
                 <Steps current={1}>{steps}</Steps>
                 <p>迷你版</p>
                 <Steps size="small" current={1}>{steps}</Steps>
-                <p>带ICON图标的步骤条</p>
-                <Steps>
-                    <Step status='finish' title='步骤1' icon='cloud' />
-                    <Step status='process' title='步骤2' icon='apple' />
-                    <Step status='wait' title='步骤3' icon='github' />
-                </Steps>
                 <p>切换到下一步</p>
                 <div>当前正在执行第 {this.state.currentStep + 1} 步</div>
                 <Steps current={this.state.currentStep}>
