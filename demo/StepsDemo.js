@@ -26,11 +26,7 @@ let steps = [{
 }, {
     title: '待运行',
     description: '这里是多信息的描述啊'
-}].map(function(s, i) {
-    return (
-        <Step key={i} title={s.title} description={s.description} />
-    );
-});
+}]
 
 let array = Array.apply(null, Array(Math.floor(Math.random() * 3) + 3));
 let steps2 = array.map(function(item, i) {
@@ -67,7 +63,8 @@ class Demo extends React.Component {
         super(props);
         this.state = {
             currentStep: Math.floor(Math.random() * steps2.length),
-            showIcon: true
+            showIcon: true,
+            steps: steps
         };
     }
 
@@ -75,6 +72,30 @@ class Demo extends React.Component {
         this.setState({
             showIcon: !this.state.showIcon
         });
+    }
+
+    changeItem() {
+        this.setState({
+            steps: [{
+                title: '已完成',
+                description: '这里是多信息的描述啊'
+            }, {
+                title: '进行中',
+                description: '这里是多信息的耶哦耶哦哦耶哦耶'
+            }, {
+                title: '又一个待运行',
+                description: '描述啊描述啊'
+            },{
+                title: '已完成',
+                description: '这里是多信息的描述啊'
+            }, {
+                title: '进行中',
+                description: '这里是多信息的耶哦耶哦哦耶哦耶'
+            }, {
+                title: '又一个待运行',
+                description: '描述啊描述啊'
+            }]
+        })
     }
 
     next() {
@@ -91,9 +112,18 @@ class Demo extends React.Component {
         return (
             <div>
                 <button className='kuma-button kuma-button-sm' onClick={this.toggleNumberShow.bind(this)}>显示数字</button>
+                <button className='kuma-button kuma-button-sm' onClick={this.changeItem.bind(this)}>动态改变块的数量</button>
                 <p>基本用法</p>
-                <Steps current={1} showIcon={this.state.showIcon}>{steps}</Steps>
-                <p>迷你版</p>
+                <Steps current={1} showIcon={this.state.showIcon}>
+                    {
+                        this.state.steps.map(function(s, i) {
+                            return (
+                                <Step key={i} title={s.title} description={s.description} />
+                            );
+                        })
+                    }
+                </Steps>
+                {/*<p>迷你版</p>
                 <Steps size="small" current={1} showIcon={this.state.showIcon}>{steps}</Steps>
                 <p>切换到下一步</p>
                 <div>当前正在执行第 {this.state.currentStep + 1} 步</div>
@@ -108,7 +138,7 @@ class Demo extends React.Component {
                 <p>竖直方向的小型步骤条</p>
                 <Steps direction="vertical" size="small" current={1} showIcon={this.state.showIcon}>{steps}</Steps>
                 <p>自定义状态</p>
-                <Steps showIcon={this.state.showIcon}>{steps3}</Steps>
+                <Steps showIcon={this.state.showIcon}>{steps3}</Steps>*/}
             </div>
         );
     }
