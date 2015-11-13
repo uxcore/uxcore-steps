@@ -1,5 +1,8 @@
 # History
 
+## 1.0.3
+
+`FIXED` remove useless console log
 
 ## 1.0.2
 `CHANGED` remove 

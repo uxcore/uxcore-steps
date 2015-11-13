@@ -84,11 +84,15 @@ class Steps extends React.Component {
     componentDidUpdate() {
         this._resize();
         const $dom = ReactDOM.findDOMNode(this);
+
         const len = $dom.children.length - 1;
         /*
          * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
          * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
          */
+        for (let i = 0; i <= len; i++) {
+            $dom.children[i].style.position = 'relative';
+        }
         $dom.children[len].style.position = 'absolute';
     }
 
@@ -105,7 +109,6 @@ class Steps extends React.Component {
     }
 
     _resize() {
-        console.log(this);
         const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
         if (this._previousStepsWidth === w) {
             return;
@@ -122,7 +125,6 @@ class Steps extends React.Component {
             tw += w;
         });
         const dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
-        console.log(dw);
         if (dw <= 0) {
             return;
         }
