@@ -75,9 +75,9 @@ class Steps extends React.Component {
         });
 
         if (window.attachEvent) {
-            window.attachEvent('onresize', this._resize);
+            window.attachEvent('onresize', this._resize.bind(this));
         } else {
-            window.addEventListener('resize', this._resize);
+            window.addEventListener('resize', this._resize.bind(this));
         }
     }
 
@@ -105,6 +105,7 @@ class Steps extends React.Component {
     }
 
     _resize() {
+        console.log(this);
         const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
         if (this._previousStepsWidth === w) {
             return;
