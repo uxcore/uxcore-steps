@@ -7,13 +7,9 @@
  */
 
 @step-prefix-cls: kuma-step;
-@step-normal-icon-size: 24px;
-@step-min-icon-size: 18px;
-@step-primary-color: #88c438;
-@step-current-color: #09f;
-@step-text-color: #999;
 
 .@{step-prefix-cls} {
+    margin-left: 30px;
     &-item {
         position: relative;
         display: inline-block;
@@ -65,7 +61,6 @@
         }
         .@{step-prefix-cls}-description {
             margin-top: 16px;
-            text-indent: -10px;
         }
     }
     &-status-finish {
@@ -87,13 +82,15 @@
     }
     &-status-process {
         .@{step-prefix-cls}-icon {
-            background-color: @step-current-color;
-            border-color: @step-current-color;
+            background-color: @step-primary-color;
+            // background-color: @step-current-color;
+            // border-color: @step-current-color;
             color: #fff;
         }
         .@{step-prefix-cls}-tail {
             > i {
-                border-color: @step-current-color;
+                // border-color: @step-current-color;
+                border-bottom: 2px dashed @step-primary-color;
             }
         }
     }
@@ -138,6 +135,7 @@
     }
 
     &-small {
+        margin-left: 20px;
         .@{step-prefix-cls}-head {
             .@{step-prefix-cls}-icon {
                 font-size: 12px;
