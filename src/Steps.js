@@ -31,7 +31,6 @@ class Steps extends React.Component {
 
             let i;
             for (i = 0; i <= len - 1; i++) {
-                const $item = $dom.children[i].children;
                 this._itemsWidth[i] = nextProps.maxDescriptionWidth;
             }
             this._itemsWidth[i] = nextProps.maxDescriptionWidth;
@@ -52,7 +51,6 @@ class Steps extends React.Component {
 
         let i;
         for (i = 0; i <= len - 1; i++) {
-            const $item = $dom.children[i].children;
             this._itemsWidth[i] = this.props.maxDescriptionWidth;
         }
         this._itemsWidth[i] = this.props.maxDescriptionWidth;
