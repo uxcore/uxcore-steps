@@ -1,5 +1,9 @@
 # History
 
+## 1.0.4
+
+`FIXED` fix issue #3, remove useless code which cause error.
+
 ## 1.0.3
 
 `FIXED` remove useless console log
