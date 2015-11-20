@@ -72,10 +72,12 @@ class Steps extends React.Component {
             this._resize();
         });
 
+        this._resizeBind = this._resize.bind(this)
+
         if (window.attachEvent) {
-            window.attachEvent('onresize', this._resize.bind(this));
+            window.attachEvent('onresize', this._resizeBind);
         } else {
-            window.addEventListener('resize', this._resize.bind(this));
+            window.addEventListener('resize', this._resizeBind);
         }
     }
 
@@ -99,10 +101,10 @@ class Steps extends React.Component {
             return;
         }
         if (window.attachEvent) {
-            window.detachEvent('onresize', this._resize);
+            window.detachEvent('onresize', this._resizeBind);
         } 
         else {
-            window.removeEventListener('resize', this._resize);
+            window.removeEventListener('resize', this._resizeBind);
         }
     }
 

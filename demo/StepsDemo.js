@@ -64,7 +64,8 @@ class Demo extends React.Component {
         this.state = {
             currentStep: Math.floor(Math.random() * steps2.length),
             showIcon: true,
-            steps: steps
+            steps: steps,
+            show: true
         };
     }
 
@@ -111,13 +112,21 @@ class Demo extends React.Component {
         });
     }
 
+    unmountComp() {
+        let me = this;
+        me.setState({
+            show: false
+        })
+    }
+
     render() {
         return (
             <div>
                 <button className='kuma-button kuma-button-sm' onClick={this.toggleNumberShow.bind(this)}>显示数字</button>
                 <button className='kuma-button kuma-button-sm' onClick={this.changeItem.bind(this)}>动态改变块的数量</button>
+                <button className='kuma-button kuma-button-sm' onClick={this.unmountComp.bind(this)}>销毁组件</button>
                 <p>基本用法</p>
-                <Steps current={1} showIcon={this.state.showIcon}>
+                {this.state.show ? <Steps current={1} showIcon={this.state.showIcon} ref="steps">
                     {
                         this.state.steps.map(function(s, i) {
                             return (
@@ -125,7 +134,7 @@ class Demo extends React.Component {
                             );
                         })
                     }
-                </Steps>
+                </Steps> : null}
                 {/*<p>迷你版</p>
                 <Steps size="small" current={1} showIcon={this.state.showIcon}>{steps}</Steps>
                 <p>切换到下一步</p>
