@@ -1,5 +1,13 @@
 # History
 
+## 1.0.6
+
+`CHANGED` update scaffold
+
+## 1.0.5
+
+`FIXED` fix issue #4, fix onscroll bug caused by bind
+
 ## 1.0.4
 
 `FIXED` fix issue #3, remove useless code which cause error.

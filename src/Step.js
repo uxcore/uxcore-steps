@@ -1,3 +1,6 @@
+let React = require('react'); 
+let ReactDOM = require('react-dom');
+
 class Step extends React.Component {
   constructor(props) {
       super(props);

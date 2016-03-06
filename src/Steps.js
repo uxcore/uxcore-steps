@@ -7,6 +7,8 @@
  */
 
 let Step = require("./Step");
+let React = require('react'); 
+let ReactDOM = require('react-dom');
 
 class Steps extends React.Component {
 
