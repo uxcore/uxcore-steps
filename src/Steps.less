@@ -6,173 +6,238 @@
  * All rights reserved.
  */
 
-@step-prefix-cls: kuma-step;
+@__step-prefix-cls: kuma-step;
+@__step-normal-icon-size: 24px;
+@__step-min-icon-size: 12px;
 
-.@{step-prefix-cls} {
+.@{__step-prefix-cls} {
     margin-left: 30px;
-    &-item {
+    .@{__step-prefix-cls}-item {
         position: relative;
         display: inline-block;
         min-height: 40px;
         vertical-align: top;
     }
-    .@{step-prefix-cls}-item-last {
-        .@{step-prefix-cls}-title {
-          padding-right: 0;
+    .@{__step-prefix-cls}-item-last {
+        .@{__step-prefix-cls}-title {
+            padding-right: 0;
         }
     }
-    &-tail {
+    .@{__step-prefix-cls}-tail {
         position: absolute;
         left: 0;
-        top: @step-normal-icon-size / 2 + 7;
-        padding: 0 6px 0 @step-normal-icon-size + 4;
+        top: @__step-normal-icon-size / 2 + 7;
+        padding: 0 10px 0 @__step-normal-icon-size + 10;
         width: 100%;
         > i {
             display: block;
             width: 100%;
-            height: 0;
-            border-bottom: 2px solid #ccc;
+            height: 2px;
+            background-color: @basic-700;
         }
     }
-    &-head {
+    .@{__step-prefix-cls}-head {
         position: absolute;
         left: 0;
         top: 8px;
-        &-inner {
-
-        }
-        .@{step-prefix-cls}-icon {
+        .@{__step-prefix-cls}-icon {
             display: inline-block;
-            width: @step-normal-icon-size;
-            height: @step-normal-icon-size;
-            border-radius: @step-normal-icon-size / 2;
-            border: 1px solid @step-primary-color;
+            width: @__step-normal-icon-size;
+            height: @__step-normal-icon-size;
+            border-radius: @__step-normal-icon-size / 2;
+            border: 1px solid @brand-success;
             text-align: center;
-            line-height: @step-normal-icon-size - 2;
-            font-size: 14px;
+            line-height: @__step-normal-icon-size - 2;
+            font-size: @__step-min-icon-size;
         }
     }
-    &-main {
-        color: @step-text-color;
-        .@{step-prefix-cls}-title {
-            margin-left: 30px;
-            font-weight: 700;
+    .@{__step-prefix-cls}-main {
+        color: @seconary-text-color;
+        .@{__step-prefix-cls}-title {
             white-space: nowrap;
+            color: @thirdary-text-color;
         }
-        .@{step-prefix-cls}-description {
-            margin-top: 16px;
+        .@{__step-prefix-cls}-description {
+            color: @thirdary-text-color;
         }
     }
-    &-status-finish {
-        .@{step-prefix-cls}-icon {
-            background-color: @step-primary-color;
-            color: #fff;
-            &:after {
-                font-family: 'kuma'!important;
-                content: '\e611';
+    // 默认样式
+    &.@{__step-prefix-cls}-type-default {
+        .@{__step-prefix-cls}-main {
+            position: absolute;
+            .@{__step-prefix-cls}-title {
+                position: relative;
+                left: 12px;
+                display: inline-block;
+                margin-left: -50%;
+                margin-top: 40px;
+                text-align: center;
+            }
+            .@{__step-prefix-cls}-description {
+                position: absolute;
+                left: -1em;
+                bottom: 60px;
+                padding: 5px 15px;
+                width: 146px;
+                height: 60px;
+                background-color: @basic-100;
+                border: 1px solid @gray-lighter;
+                line-height: 2;
+                overflow: hidden;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                display: -webkit-box;
             }
         }
-        &.@{step-prefix-cls}-item {
-            .@{step-prefix-cls}-tail {
-                i {
-                    border-color: @step-primary-color;
+    }
+    // title在顶部的
+    &.@{__step-prefix-cls}-type-title-on-top {
+        .@{__step-prefix-cls}-main {
+            position: absolute;
+            .@{__step-prefix-cls}-title {
+                position: relative;
+                left: 12px;
+                top: -18px;
+                display: inline-block;
+                margin-left: -50%;
+                text-align: center;
+            }
+            .@{__step-prefix-cls}-description {
+                position: absolute;
+                left: 12px;
+                display: inline-block;
+                margin-left: -50px;
+                margin-top: 40px;
+                width: 100px;
+                text-align: center;
+            }
+        }
+    }
+    // 包含大量描述的
+    &.@{__step-prefix-cls}-type-long-desc {
+        .@{__step-prefix-cls}-main {
+            padding: 10px @__step-normal-icon-size 0;
+        }
+        .@{__step-prefix-cls}-title {
+            position: relative;
+            padding: 0 8px;
+            display: inline-block;
+            background-color: #fff;
+        }
+        .@{__step-prefix-cls}-description {
+            padding: 8px;
+            min-width: 180px;
+        }
+    }
+    .@{__step-prefix-cls}-status-process {
+        &.@{__step-prefix-cls}-item-last {
+            .@{__step-prefix-cls}-icon {
+                &:after {
+                    font-family: 'kuma'!important;
+                    content: '\e611';
                 }
             }
         }
     }
-    &-status-process {
-        .@{step-prefix-cls}-icon {
-            background-color: @step-primary-color;
-            // background-color: @step-current-color;
-            // border-color: @step-current-color;
-            color: #fff;
-        }
-        .@{step-prefix-cls}-tail {
-            > i {
-                // border-color: @step-current-color;
-                border-bottom: 2px dashed @step-primary-color;
+    .@{__step-prefix-cls}-status-finish {
+        &.@{__step-prefix-cls}-item {
+            .@{__step-prefix-cls}-tail {
+                i {
+                    background-color: @brand-success;
+                }
             }
         }
     }
-    &-status-wait {
-        .@{step-prefix-cls}-icon {
-            background-color: #fff;
-            border-color: #ccc;
-            color: #ccc;
+    .@{__step-prefix-cls}-status-finish, .@{__step-prefix-cls}-status-process {
+        .@{__step-prefix-cls}-icon {
+            background-color: @brand-success;
+            color: #fff;
+        }
+    }
+    .@{__step-prefix-cls}-status-wait {
+        .@{__step-prefix-cls}-icon {
+            background-color: @basic-100;
+            border-color: @gray-lighter;
+            color: @thirdary-text-color;
+        }
+    }
+    .@{__step-prefix-cls}-status-process {
+        .@{__step-prefix-cls}-title {
+            color: @primary-text-color;
         }
     }
 
-    &-vertical {
-        .@{step-prefix-cls}-head {
+    &.@{__step-prefix-cls}-vertical {
+        .@{__step-prefix-cls}-head {
             top: 0;
         }
-        .@{step-prefix-cls}-item {
+        .@{__step-prefix-cls}-item {
             display: block;
+            min-height: 110px;
+            &.@{__step-prefix-cls}-status-process {
+                .@{__step-prefix-cls}-description {
+                    color: @seconary-text-color;
+                }
+            }
         }
-        .@{step-prefix-cls}-tail {
-            left: @step-normal-icon-size / 2;
+        .@{__step-prefix-cls}-tail {
+            left: @__step-normal-icon-size / 2 - 1;
             top: 0;
-            padding: @step-normal-icon-size + 2 0 2px 0;
+            padding: @__step-normal-icon-size + 8 0 9px 0;
             width: 0;
             height: 100%;
             i {
-                width: 0;
+                width: 2px;
                 height: 100%;
-                border-bottom: 0 none;
-                border-left: 2px solid #ccc;
+                background-color: @basic-700;
             }
         }
-        .@{step-prefix-cls}-main {
+        .@{__step-prefix-cls}-main {
             padding: 2px 0 0 30px;
-            .@{step-prefix-cls}-title {
+            .@{__step-prefix-cls}-title {
                 margin-left: 0;
             }
-            .@{step-prefix-cls}-description {
+            .@{__step-prefix-cls}-description {
                 margin-top: 4px;
                 text-indent: 0;
             }
         }
     }
 
-    &-small {
+    .@{__step-prefix-cls}-small {
         margin-left: 20px;
-        .@{step-prefix-cls}-head {
-            .@{step-prefix-cls}-icon {
+        .@{__step-prefix-cls}-head {
+            .@{__step-prefix-cls}-icon {
                 font-size: 12px;
             }
         }
-        .@{step-prefix-cls}-tail {
-            top: @step-min-icon-size / 2 + 7;
-            padding: 0 6px 0 @step-min-icon-size + 4;
+        .@{__step-prefix-cls}-tail {
+            top: @__step-min-icon-size / 2 + 7;
+            padding: 0 6px 0 @__step-min-icon-size + 4;
         }
-        &.@{step-prefix-cls}-vertical {
-            .@{step-prefix-cls}-tail {
-                left: @step-min-icon-size / 2 - 1;
+        &.@{__step-prefix-cls}-vertical {
+            .@{__step-prefix-cls}-tail {
+                left: @__step-min-icon-size / 2 - 1;
                 top: 0;
-                padding: @step-min-icon-size + 2 0 2px 0;
+                padding: @__step-min-icon-size + 2 0 2px 0;
             }
         }
-        .@{step-prefix-cls}-head {
-            .@{step-prefix-cls}-icon {
-                width: @step-min-icon-size;
-                height: @step-min-icon-size;
-                border-radius: @step-min-icon-size / 2;
-                line-height: @step-min-icon-size - 2;
+        .@{__step-prefix-cls}-head {
+            .@{__step-prefix-cls}-icon {
+                width: @__step-min-icon-size;
+                height: @__step-min-icon-size;
+                border-radius: @__step-min-icon-size / 2;
+                line-height: @__step-min-icon-size - 2;
             }
         }
     }
 
-    &-noicon {
-        &.@{step-prefix-cls}-vertical {
-            .@{step-prefix-cls}-head {
-                top: 5px;
-                left: 8px;
-            }
-        }
-        .@{step-prefix-cls}-head {
-            top: 12px;
+    &.@{__step-prefix-cls}-noicon {
+        .@{__step-prefix-cls}-head {
+            top: 11px;
             left: 6px;
-            .@{step-prefix-cls}-icon {
+            .@{__step-prefix-cls}-icon {
                 width: 10px;
                 height: 10px;
                 border-radius: 5px;
@@ -181,9 +246,22 @@
                 }
             }
         }
-        .@{step-prefix-cls}-status-wait {
-            .@{step-prefix-cls}-icon {
-                background-color: #ccc;
+        .@{__step-prefix-cls}-tail {
+            padding: 0 0 0 22px;
+        }
+        .@{__step-prefix-cls}-status-wait {
+            .@{__step-prefix-cls}-icon {
+                background-color: @gray-lighter;
+            }
+        }
+        
+        &.@{__step-prefix-cls}-vertical {
+            .@{__step-prefix-cls}-head {
+                top: 5px;
+                left: 8px;
+            }
+            .@{__step-prefix-cls}-tail {
+                padding: 27px 0 0 1px;
             }
         }
     }

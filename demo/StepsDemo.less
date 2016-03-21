@@ -5,5 +5,13 @@
  * Copyright 2014-2015, Uxcore Team, Alinw.
  * All rights reserved.
  */
-@import "../node_modules/uxcore-kuma/src/variables";
+// @import "../node_modules/uxcore-kuma/src/variables";
+html {
+    box-sizing: border-box;
+    * {
+        box-sizing: inherit;    
+    }
+}
+@import '../style/kuma-base/variable.less';
+@import '../style/kuma-base/core.less';
 @import "../src/Steps.less";

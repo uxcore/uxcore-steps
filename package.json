@@ -15,8 +15,7 @@
   "react",
   "react-component",
   "uxcore-steps",
-  "Steps",
-  ""
+  "Steps"
  ],
  "devDependencies": {
   "babel-core": "~6.4.0",

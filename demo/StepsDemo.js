@@ -26,46 +26,19 @@ let steps = [{
 }, {
     title: '待运行',
     description: '这里是多信息的描述啊'
-}]
-
-let array = Array.apply(null, Array(Math.floor(Math.random() * 3) + 3));
-let steps2 = array.map(function(item, i) {
-    return {
-        title: '步骤' + (i + 1)
-    };
-});
-
-var steps3 = [{
-    status: 'finish',
-    title: '已完成',
-    description: '这里是多信息的描述啊'
-}, {
-    status: 'process',
-    title: '进行中',
-    description: '这里是多信息的耶哦耶哦哦耶哦耶'
-}, {
-    status: 'wait',
-    title: '又一个待运行',
-    description: '描述啊描述啊'
-}, {
-    status: 'wait',
-    title: '待运行',
-    description: '这里是多信息的描述啊'
-}].map(function(s, i) {
-    return (
-        <Step key={i} title={s.title} status={s.status} description={s.description} />
-    );
-});
+}];
 
 class Demo extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            currentStep: Math.floor(Math.random() * steps2.length),
+            current: 0,
             showIcon: true,
             steps: steps,
-            show: true
+            show: true,
+            direction: '',
+            showDesc: true
         };
     }
 
@@ -82,7 +55,7 @@ class Demo extends React.Component {
                 description: '这里是多信息的描述啊'
             }, {
                 title: '进行中',
-                description: '这里是多信息的耶哦耶哦哦耶哦耶'
+                description: '这里是多信息的耶哦耶哦哦耶哦耶耶哦耶哦哦耶哦耶'
             }, {
                 title: '又一个待运行',
                 description: '描述啊描述啊'
@@ -101,14 +74,20 @@ class Demo extends React.Component {
             }]
         })
     }
+    
+    toggleDescription(){
+        this.setState({
+            showDesc: !this.state.showDesc
+        });
+    }
 
     next() {
-        var s = this.state.currentStep + 1;
-        if (s === steps2.length) {
+        var s = this.state.current + 1;
+        if (s === this.state.steps.length) {
             s = 0;
         }
         this.setState({
-            currentStep: s
+            current: s
         });
     }
 
@@ -116,41 +95,35 @@ class Demo extends React.Component {
         let me = this;
         me.setState({
             show: false
-        })
+        });
+    }
+    
+    toggleDirection(){
+        this.setState({
+            direction: this.state.direction === 'vertical' ? '': 'vertical'
+        });
     }
 
     render() {
+        let showDesc = this.state.showDesc;
         return (
             <div>
-                <button className='kuma-button kuma-button-sm' onClick={this.toggleNumberShow.bind(this)}>显示数字</button>
-                <button className='kuma-button kuma-button-sm' onClick={this.changeItem.bind(this)}>动态改变块的数量</button>
-                <button className='kuma-button kuma-button-sm' onClick={this.unmountComp.bind(this)}>销毁组件</button>
-                <p>基本用法</p>
-                {this.state.show ? <Steps current={1} showIcon={this.state.showIcon} ref="steps">
+                <button className='kuma-button kuma-button-primary' onClick={this.toggleNumberShow.bind(this)}>显示数字</button>
+                <button className='kuma-button kuma-button-primary' onClick={this.changeItem.bind(this)}>动态改变块的数量</button>
+                <button className='kuma-button kuma-button-primary' onClick={this.unmountComp.bind(this)}>销毁组件</button>
+                <button className='kuma-button kuma-button-primary' onClick={this.toggleDirection.bind(this)}>切换方向</button>
+                <button className='kuma-button kuma-button-primary' onClick={this.toggleDescription.bind(this)}>切换显示描述</button>
+                <button className='kuma-button kuma-button-primary' onClick={this.next.bind(this)}>下一步</button>
+                <p style={{marginBottom: 100}}>基本用法</p>
+                {this.state.show ? <Steps current={this.state.current} showIcon={this.state.showIcon} direction={this.state.direction} ref="steps">
                     {
                         this.state.steps.map(function(s, i) {
                             return (
-                                <Step key={i} title={s.title} description={s.description} />
+                                <Step key={i} title={s.title} description={showDesc? s.description: false} />
                             );
                         })
                     }
                 </Steps> : null}
-                {/*<p>迷你版</p>
-                <Steps size="small" current={1} showIcon={this.state.showIcon}>{steps}</Steps>
-                <p>切换到下一步</p>
-                <div>当前正在执行第 {this.state.currentStep + 1} 步</div>
-                <Steps current={this.state.currentStep} showIcon={this.state.showIcon}>
-                    {steps2.map((s, i) => <Step key={i} title={s.title} description={s.description} />)}
-                </Steps>
-                <div>
-                    <button className='kuma-button kuma-button-sm' onClick={this.next.bind(this)}>下一步</button>
-                </div>
-                <p>竖直方向的步骤条</p>
-                <Steps direction="vertical" current={1} showIcon={this.state.showIcon}>{steps}</Steps>
-                <p>竖直方向的小型步骤条</p>
-                <Steps direction="vertical" size="small" current={1} showIcon={this.state.showIcon}>{steps}</Steps>
-                <p>自定义状态</p>
-                <Steps showIcon={this.state.showIcon}>{steps3}</Steps>*/}
             </div>
         );
     }

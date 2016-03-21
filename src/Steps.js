@@ -138,15 +138,18 @@ class Steps extends React.Component {
 
     render(){
         let props = this.props;
-        let {prefixCls, children, maxDescriptionWidth, iconPrefix, size, direction, showIcon} = props;
+        let {prefixCls, children, maxDescriptionWidth, iconPrefix, size, direction, showIcon, current, type} = props;
         let len = children.length - 1;
         let iws = this._itemsWidth;
         let clsName = prefixCls;
-        if (size === 'small' && showIcon) {
-            clsName += ` ${prefixCls}-small`;
-        }
+        // if (size === 'small' && showIcon) {
+        //     clsName += ` ${prefixCls}-small`;
+        // }
         if (direction === 'vertical') {
             clsName += ` ${prefixCls}-vertical`;
+        } else {
+            clsName += ` ${prefixCls}-type-${type}`;
+            
         }
         if (!showIcon) {
             clsName += ` ${prefixCls}-noicon`;
@@ -164,7 +167,7 @@ class Steps extends React.Component {
                         maxDescriptionWidth: maxDescriptionWidth
                     };
                     if (!ele.props.status) {
-                        np.status = idx === props.current ? 'process' : (idx < props.current ? 'finish' : 'wait');
+                        np.status = idx === current ? 'process' : (idx < current ? 'finish' : 'wait');
                     }
                     return React.cloneElement(ele, np);
                 }, this)}
@@ -176,22 +179,24 @@ class Steps extends React.Component {
 Steps.defaultProps = {
     prefixCls: 'kuma-step',
     iconPrefix: '',
-    size: 'default',
+    // size: 'default',
     maxDescriptionWidth: 100,
     current: 0,
     direction: '',
-    showIcon: true
+    showIcon: true,
+    type: 'default'    
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Steps.propTypes = {
     prefixCls: React.PropTypes.string,
     iconPrefix: React.PropTypes.string,
-    size: React.PropTypes.oneOf(['default', 'small']),
+    // size: React.PropTypes.oneOf(['default', 'small']),
     maxDescriptionWidth: React.PropTypes.number,
     current: React.PropTypes.number,
     direction: React.PropTypes.string,
-    showIcon: React.PropTypes.bool
+    showIcon: React.PropTypes.bool,
+    type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc'])
 };
 
 Steps.displayName = "Steps";
