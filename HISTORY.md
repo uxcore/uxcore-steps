@@ -1,5 +1,12 @@
 # History
 
+## 1.1.0
+
+`CHANGED` apply new style
+`ADDED` `type` prop: `default` `title-on-top` or `long-desc`
+`REMOVE` `size` prop
+
+
 ## 1.0.6
 
 `CHANGED` update scaffold
