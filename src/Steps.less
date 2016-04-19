@@ -15,7 +15,8 @@
     .@{__step-prefix-cls}-item {
         position: relative;
         display: inline-block;
-        min-height: 40px;
+        min-height: 70px;
+        margin-top: 74px;
         vertical-align: top;
     }
     .@{__step-prefix-cls}-item-last {
@@ -63,6 +64,11 @@
     }
     // 默认样式
     &.@{__step-prefix-cls}-type-default {
+        .@{__step-prefix-cls}-item {
+            &.@{__step-prefix-cls}-no-desc {
+                margin-top: 0;
+            }
+        }
         .@{__step-prefix-cls}-main {
             position: absolute;
             .@{__step-prefix-cls}-title {
@@ -93,6 +99,9 @@
     }
     // title在顶部的
     &.@{__step-prefix-cls}-type-title-on-top {
+        .@{__step-prefix-cls}-item {
+            margin-top: 28px;
+        }
         .@{__step-prefix-cls}-main {
             position: absolute;
             .@{__step-prefix-cls}-title {
@@ -116,6 +125,9 @@
     }
     // 包含大量描述的
     &.@{__step-prefix-cls}-type-long-desc {
+        .@{__step-prefix-cls}-item {
+            margin-top: 8px;
+        }
         .@{__step-prefix-cls}-main {
             padding: 10px @__step-normal-icon-size 0;
         }
@@ -174,6 +186,7 @@
         }
         .@{__step-prefix-cls}-item {
             display: block;
+            margin-top: 0;
             min-height: 110px;
             &.@{__step-prefix-cls}-status-process {
                 .@{__step-prefix-cls}-description {

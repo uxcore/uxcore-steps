@@ -32,6 +32,8 @@ class Step extends React.Component {
         description = (<div className={`${prefixCls}-description`}>
           {props.description}
         </div>)
+    } else {
+        stepCls += ` ${prefixCls}-no-desc`;
     }
     
     return (
