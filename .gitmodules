@@ -1,3 +1,0 @@
-[submodule "style/kuma-base"]
-	path = style/kuma-base
-	url = git@github.com:uxcore/kuma-base.git
