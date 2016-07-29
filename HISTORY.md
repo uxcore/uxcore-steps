@@ -1,5 +1,8 @@
 # History
 
+## 1.1.4
+`FIXED` style issue under IE8.
+
 ## 1.1.0
 
 `CHANGED` apply new style

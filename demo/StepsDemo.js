@@ -8,8 +8,8 @@
 
 // let classnames = require('classnames');
 
-let Steps = require('../src');
-let Step = Steps.Step;
+import React from 'react';
+import Steps, { Step } from '../src';
 
 class Demo extends React.Component {
 

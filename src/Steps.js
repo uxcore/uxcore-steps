@@ -6,9 +6,7 @@
  * All rights reserved.
  */
 
-let Step = require("./Step");
-let React = require('react'); 
-let ReactDOM = require('react-dom');
+import React from 'react'; 
 
 class Steps extends React.Component {
 
@@ -200,7 +198,5 @@ Steps.propTypes = {
 };
 
 Steps.displayName = "Steps";
-
-Steps.Step = Step;
 
 export default Steps;

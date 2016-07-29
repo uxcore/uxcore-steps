@@ -12,13 +12,13 @@ uxcore-steps ui component for react
 $ git clone https://github.com/uxcore/uxcore-steps
 $ cd uxcore-steps
 $ npm install
-$ gulp server
+$ npm run start
 ```
 
 ## Usage
 ```js
-let Steps = require('uxcore-steps');
-let Step = Steps.Step;
+import Steps, { Step } from 'uxcore-steps';
+
 ReactDOM.render(
 	<Steps>
 		<Steps.Step title="第一步"></Steps.Step>

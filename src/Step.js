@@ -1,5 +1,4 @@
-let React = require('react'); 
-let ReactDOM = require('react-dom');
+import React from 'react'; 
 
 class Step extends React.Component {
   constructor(props) {
