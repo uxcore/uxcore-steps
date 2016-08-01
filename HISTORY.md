@@ -1,5 +1,8 @@
 # History
 
+## 1.1.5
+`FIXED` add props `className`.
+
 ## 1.1.4
 `FIXED` style issue under IE8.
 

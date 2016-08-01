@@ -35,9 +35,6 @@ class Steps extends React.Component {
             }
             this._itemsWidth[i] = nextProps.maxDescriptionWidth;
             this._update(nextProps);
-
-
-
         }
     }
 
@@ -117,13 +114,11 @@ class Steps extends React.Component {
         this._update();
     }
 
-    _update(props) {
-        props = props || this.props;
+    _update(props = this.props) {
         const len = props.children.length - 1;
-        let tw = 0;
-        this._itemsWidth.forEach((w) => {
-            tw += w;
-        });
+        let tw = this._itemsWidth.reduce((prev, w) => {
+            return prev + w;
+        }, 0);
         const dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
         if (dw <= 0) {
             return;
@@ -136,18 +131,14 @@ class Steps extends React.Component {
 
     render(){
         let props = this.props;
-        let {prefixCls, children, maxDescriptionWidth, iconPrefix, size, direction, showIcon, current, type} = props;
+        let { prefixCls, className, children, maxDescriptionWidth, iconPrefix, size, direction, showIcon, current, type } = props;
         let len = children.length - 1;
         let iws = this._itemsWidth;
         let clsName = prefixCls;
-        // if (size === 'small' && showIcon) {
-        //     clsName += ` ${prefixCls}-small`;
-        // }
         if (direction === 'vertical') {
-            clsName += ` ${prefixCls}-vertical`;
+            clsName += ` ${prefixCls}-vertical ${className}`;
         } else {
-            clsName += ` ${prefixCls}-type-${type}`;
-            
+            clsName += ` ${prefixCls}-type-${type} ${className}`;
         }
         if (!showIcon) {
             clsName += ` ${prefixCls}-noicon`;
@@ -155,7 +146,7 @@ class Steps extends React.Component {
 
         return (
             <div className={clsName}>
-                {React.Children.map(children, function (ele, idx) {
+                {React.Children.map(children, (ele, idx) => {
                     let np = {
                         stepNumber: showIcon ? (idx + 1).toString(): '',
                         stepLast: idx === len,
@@ -176,8 +167,8 @@ class Steps extends React.Component {
 
 Steps.defaultProps = {
     prefixCls: 'kuma-step',
+    className: '',
     iconPrefix: '',
-    // size: 'default',
     maxDescriptionWidth: 100,
     current: 0,
     direction: '',
@@ -188,8 +179,8 @@ Steps.defaultProps = {
 // http://facebook.github.io/react/docs/reusable-components.html
 Steps.propTypes = {
     prefixCls: React.PropTypes.string,
+    className: React.PropTypes.string,
     iconPrefix: React.PropTypes.string,
-    // size: React.PropTypes.oneOf(['default', 'small']),
     maxDescriptionWidth: React.PropTypes.number,
     current: React.PropTypes.number,
     direction: React.PropTypes.string,
