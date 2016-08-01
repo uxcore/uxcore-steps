@@ -1,5 +1,8 @@
 # History
 
+## 1.1.6
+`FIXED` export bug
+
 ## 1.1.5
 `FIXED` add props `className`.
 
