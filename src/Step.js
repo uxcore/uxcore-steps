@@ -12,6 +12,7 @@ class Step extends React.Component {
     const iconPrefix = props.iconPrefix;
     const maxWidth = props.maxDescriptionWidth;
     const iconName = props.icon ? props.icon : 'check';
+    let fixStyle = props.fixStyle;
     let icon, stepCls = `${prefixCls}-item ${prefixCls}-status-${status}`, tail, description;
     if (!props.icon && status !== 'process' || !props.stepLast) {
         icon = <span className={`${prefixCls}-icon`}>{props.stepNumber}</span>;
@@ -34,9 +35,17 @@ class Step extends React.Component {
     } else {
         stepCls += ` ${prefixCls}-no-desc`;
     }
+
+    if (fixStyle) {
+        fixStyle.width = props.tailWidth;
+    } else {
+        fixStyle = {
+            width: props.tailWidth,
+        }
+    }
     
     return (
-        <div className={`${stepCls}`} style={{width: props.tailWidth}}>
+        <div className={`${stepCls}`} style={fixStyle}>
             {tail}
             <div className={`${prefixCls}-head`}>
                 <div className={`${prefixCls}-head-inner`}>{icon}</div>

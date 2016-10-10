@@ -130,18 +130,41 @@ class Steps extends React.Component {
     }
 
     render(){
-        let props = this.props;
-        let { prefixCls, className, children, maxDescriptionWidth, iconPrefix, size, direction, showIcon, current, type } = props;
+        let {
+            prefixCls,
+            className,
+            children,
+            maxDescriptionWidth,
+            iconPrefix,
+            size,
+            direction,
+            showIcon,
+            current,
+            type
+        } = this.props;
         let len = children.length - 1;
         let iws = this._itemsWidth;
         let clsName = prefixCls;
+        let fixStyle;
         if (direction === 'vertical') {
             clsName += ` ${prefixCls}-vertical ${className}`;
         } else {
             clsName += ` ${prefixCls}-type-${type} ${className}`;
+            // fix #5
+            if (type === 'default') {
+                let descItemsCount = children.filter(d => d.props.description).length;
+                if (descItemsCount > 0 && descItemsCount !== len + 1) {
+                    fixStyle = {
+                        marginTop: 70,
+                    };
+                }
+            }
         }
         if (!showIcon) {
             clsName += ` ${prefixCls}-noicon`;
+        }
+        if (typeof current !== 'number') {
+            current = Number(current);
         }
 
         return (
@@ -153,10 +176,11 @@ class Steps extends React.Component {
                         tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
                         prefixCls: prefixCls,
                         iconPrefix: iconPrefix,
-                        maxDescriptionWidth: maxDescriptionWidth
+                        maxDescriptionWidth: maxDescriptionWidth,
+                        fixStyle: fixStyle,
                     };
                     if (!ele.props.status) {
-                        np.status = idx === current ? 'process' : (idx < current ? 'finish' : 'wait');
+                        np.status = idx == current ? 'process' : (idx < current ? 'finish' : 'wait');
                     }
                     return React.cloneElement(ele, np);
                 }, this)}

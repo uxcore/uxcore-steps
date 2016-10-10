@@ -1,5 +1,8 @@
 # History
 
+## 1.1.7
+`FIXED` #5
+
 ## 1.1.6
 `FIXED` export bug
 
