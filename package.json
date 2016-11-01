@@ -1,6 +1,6 @@
 {
  "name": "uxcore-steps",
- "version": "1.1.7",
+ "version": "1.1.8",
  "description": "uxcore-steps component for uxcore.",
  "repository": "https://github.com/uxcore/uxcore-steps.git",
  "author": "vincent.bian",
@@ -32,6 +32,11 @@
  "devDependencies": {
   "console-polyfill": "^0.2.2",
   "es5-shim": "^4.5.8",
+  "eslint": "^3.9.1",
+  "eslint-config-airbnb": "^12.0.0",
+  "eslint-plugin-import": "^1.16.0",
+  "eslint-plugin-jsx-a11y": "^2.2.3",
+  "eslint-plugin-react": "^6.4.1",
   "expect.js": "~0.3.1",
   "kuma-base": "1.x",
   "react": "0.14.x",
