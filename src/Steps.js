@@ -41,7 +41,7 @@ class Steps extends React.Component {
          */
     $dom.children[len].style.position = 'absolute';
 
-    this._fixedLastDetailHeight();
+    this.fixLastDetailHeight();
 
         /*
          * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
@@ -91,7 +91,7 @@ class Steps extends React.Component {
       $dom.children[i].style.position = 'relative';
     }
     $dom.children[len].style.position = 'absolute';
-    this._fixedLastDetailHeight();
+    this.fixLastDetailHeight();
   }
 
   componentWillUnmount() {
@@ -106,7 +106,7 @@ class Steps extends React.Component {
   }
 
   _resize() {
-    this._fixedLastDetailHeight();
+    this.fixLastDetailHeight();
     const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
     if (this._previousStepsWidth === w) {
       return;
@@ -115,7 +115,7 @@ class Steps extends React.Component {
     this._update();
   }
 
-  _fixedLastDetailHeight() {
+  fixLastDetailHeight() {
         /*
          * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
          * */

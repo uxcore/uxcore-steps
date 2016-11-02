@@ -31,15 +31,15 @@ class Demo extends React.Component {
         <h3>横向步骤条(标准)</h3>
         <div className="demo-box">
           <Steps current={3} showIcon onChange={this.cb.bind(this)} showDetail currentDetail={this.state.c}>
-            <Step key={0} title={'步骤一'} >步骤1, 利用回调函数改变currentDetail取值来切换详情</Step>
-            <Step key={1} title={'步骤二'} >步骤2, 利用回调函数改变currentDetail取值来切换详情</Step>
-            <Step key={2} title={'步骤三'} >步骤3, 利用回调函数改变currentDetail取值来切换详情</Step>
-            <Step key={3} title={'步骤四'} >步骤4, 利用回调函数改变currentDetail取值来切换详情</Step>
+            <Step key={0} title={'步骤一'} >步骤1, 利用回调函数改变currentDetail取值来切换详情面板</Step>
+            <Step key={1} title={'步骤二'} >步骤2, 利用回调函数改变currentDetail取值来切换详情面板</Step>
+            <Step key={2} title={'步骤三'} >步骤3, 利用回调函数改变currentDetail取值来切换详情面板</Step>
+            <Step key={3} title={'步骤四'} >步骤4, 利用回调函数改变currentDetail取值来切换详情面板</Step>
             <Step key={4} title={'已完成'} >步骤5
-              <br />我是比较高的最后一步
-              <br />我是比较高的最后一步
-              <br />我是比较高的最后一步
-              <br />我是比较高的最后一步
+              <br />利用回调函数改变currentDetail取值来切换详情面板
+              <br />利用回调函数改变currentDetail取值来切换详情面板
+              <br />利用回调函数改变currentDetail取值来切换详情面板
+              <br />利用回调函数改变currentDetail取值来切换详情面板
             </Step>
           </Steps>
         </div>
