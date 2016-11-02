@@ -18,6 +18,27 @@
         min-height: 70px;
         margin-top: 74px;
         vertical-align: top;
+        .@{__step-prefix-cls}-main {
+            .@{__step-prefix-cls}-detail-arrow {
+                position: absolute;
+                top: 45px;
+                font-family: kuma;
+                font-size: 34px;
+                margin-left: -50%;
+                left: 13px;
+                &::before{
+                    content:"\e613";
+                    color:#ccc;
+                }
+                &::after{
+                    content:"\e613";
+                    color: #f2f2f2;
+                    position: absolute;
+                    top: 2px;
+                    left: 0;
+                }
+            }
+        }
     }
     .@{__step-prefix-cls}-item-last {
         .@{__step-prefix-cls}-title {
@@ -41,6 +62,7 @@
         position: absolute;
         left: 0;
         top: 8px;
+        z-index:1;
         .@{__step-prefix-cls}-icon {
             display: inline-block;
             width: @__step-normal-icon-size;
@@ -276,7 +298,7 @@
                 background-color: @gray-lighter;
             }
         }
-        
+
         &.@{__step-prefix-cls}-vertical {
             .@{__step-prefix-cls}-head {
                 top: 5px;
@@ -285,6 +307,22 @@
             .@{__step-prefix-cls}-tail {
                 padding: 27px 0 0 1px;
             }
+        }
+    }
+    //包含详情的
+    .@{__step-prefix-cls}-detail {
+        > .@{__step-prefix-cls}-detail-con{
+            display:none;
+            margin-top: 74px;
+            width: 800px;
+            background-color: rgba(242, 242, 242, 1);
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    }
+    .@{__step-prefix-cls}-detail.@{__step-prefix-cls}-detail-current {
+        > .@{__step-prefix-cls}-detail-con{
+            display:block;
         }
     }
 }

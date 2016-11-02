@@ -44,6 +44,9 @@ http://uxcore.github.io/uxcore/components/steps/
 |maxDescriptionWidth | 可选参数，指定步骤的详细描述文字的最大宽度。 | number | 无 | 100 |
 |showIcon | 步骤节点是否显示图标或数字 | bool | `true` or `false` | true |
 |type | 步骤条类型 | string | `default` `title-on-top` or `long-desc` | `default` |
+|showDetail | 可选参数[direction=vertical或type=long-desc不生效],是否显示详情面板[step的children] | bool | `true` `false` | `false` |
+|currentDetail | 可选参数[direction=vertical或type=long-desc不生效],指定当前正在显示的详情面板，从0开始记数 | number | `0` ... | `0` |
+|onChange | 可选参数[direction=vertical或type=long-desc不生效],指定步骤icon点击事件回调,参数为被点击步骤对应数字 | func |  | (v)=>{} |
 
 ### Steps.Step
 | 配置项 | 说明 | 类型 | 可选值 | 默认值 |
