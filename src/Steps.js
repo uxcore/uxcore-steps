@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 class Steps extends React.Component {
   constructor(props) {
