@@ -1,5 +1,6 @@
 *.iml
 *.log
+.happypack/
 .idea/
 .ipr
 .iws
@@ -27,3 +28,4 @@ spm_modules
 dist
 build
 assets/**/*.css
+coverage/*
