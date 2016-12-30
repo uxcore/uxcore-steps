@@ -35,6 +35,7 @@ describe('Step', () => {
     it('should display status finish', () => {
       const w = generateStep('finish', '', '', '');
       expect(w.find('.kuma-step-status-finish').length).to.be(1);
+      w.node.onIconClick();
     });
   });
 
@@ -87,6 +88,7 @@ describe('Step', () => {
       stepLast: false,
     });
     expect(w.find('.kuma-step-tail').length).to.be(1);
+    w.unmount();
   });
 
   it('should display the tail with fixStyle', () => {

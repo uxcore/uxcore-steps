@@ -1,10 +1,11 @@
 import expect from 'expect.js';
 import { mount } from 'enzyme';
 import React from 'react';
+import assign from 'object-assign';
 import Steps from '../src';
 
 const generateSteps = (options = {}) => {
-  const opts = Object.assign({}, {
+  const opts = assign({}, {
     current: 1,
     direction: '',
     showIcon: true,
@@ -27,11 +28,18 @@ const generateSteps = (options = {}) => {
 
 describe('Steps', () => {
   describe('Initial Instance', () => {
-    it('initialized state', () => {
+    it('initialized state', (done) => {
       const i = generateSteps().instance();
       i.render();
       expect(i.state.init).to.be(false);
       expect(i.state.tailWidth).to.be(0);
+      i.componentWillReceiveProps(assign({}, i.props, {
+        children: [<div>Hello</div>],
+      }));
+      setTimeout(() => {
+        expect(i.props.children).to.be.an('array');
+        done();
+      }, 400);
     })
   });
 
