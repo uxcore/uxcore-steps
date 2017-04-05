@@ -1,12 +1,11 @@
 import React from 'react';
 
 class Step extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   onIconClick() {
-    this.props.hasDetail && this.props.onChange(Number(this.props.stepNumber) - 1);
+    if (this.props.hasDetail) {
+      this.props.onChange(Number(this.props.stepNumber) - 1);
+    }
   }
 
   render() {
@@ -62,7 +61,10 @@ class Step extends React.Component {
         <div className={`${prefixCls}-main`} style={{ maxWidth }}>
           <div className={`${prefixCls}-detail-arrow`} style={{ display: (props.showDetail ? 'block' : 'none') }} />
           <div className={`${prefixCls}-title`}>{props.title}</div>
-          {description}
+          <div>
+            {description}
+            {description ? <div className={`${prefixCls}-description-arrow`} /> : null}
+          </div>
         </div>
         <div className={detailCls}>
           <div className={`${prefixCls}-detail-con`} style={props.detailContentFixStyle}>
@@ -75,5 +77,14 @@ class Step extends React.Component {
     );
   }
 }
+
+Step.propTypes = {
+  hasDetail: React.PropTypes.bool,
+  onChange: React.PropTypes.func,
+  stepNumber: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number,
+  ]),
+};
 
 module.exports = Step;

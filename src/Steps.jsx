@@ -6,7 +6,6 @@
  * All rights reserved.
  */
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class Steps extends React.Component {
   constructor(props) {
@@ -15,8 +14,8 @@ class Steps extends React.Component {
       init: false,
       tailWidth: 0,
     };
-    this._previousStepsWidth = 0;
-    this._itemsWidth = [];
+    this.previousStepsWidth = 0;
+    this.itemsWidth = [];
   }
 
   componentDidMount() {
@@ -24,41 +23,41 @@ class Steps extends React.Component {
       return;
     }
 
-    const $dom = ReactDOM.findDOMNode(this);
+    const $dom = this.root;
     const len = $dom.children.length - 1;
-    this._itemsWidth = new Array(len + 1);
+    this.itemsWidth = new Array(len + 1);
 
     let i;
     for (i = 0; i <= len - 1; i++) {
-      this._itemsWidth[i] = this.props.maxDescriptionWidth;
+      this.itemsWidth[i] = this.props.maxDescriptionWidth;
     }
-    this._itemsWidth[i] = this.props.maxDescriptionWidth;
-    this._previousStepsWidth = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
-    this._update();
+    this.itemsWidth[i] = this.props.maxDescriptionWidth;
+    this.previousStepsWidth = Math.floor(this.root.offsetWidth);
+    this.update();
 
-        /*
-         * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
-         * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
-         */
+    /*
+     * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
+     * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
+     */
     $dom.children[len].style.position = 'absolute';
 
     this.fixLastDetailHeight();
 
-        /*
-         * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
-         * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
-         * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
-         */
+    /*
+     * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
+     * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
+     * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，resize里面会判断要不要更新。
+     */
     setTimeout(() => {
-      this._resize();
+      this.resize();
     });
 
-    this._resizeBind = this._resize.bind(this);
+    this.resizeBind = this.resize.bind(this);
 
     if (window.attachEvent) {
-      window.attachEvent('onresize', this._resizeBind);
+      window.attachEvent('onresize', this.resizeBind);
     } else {
-      window.addEventListener('resize', this._resizeBind);
+      window.addEventListener('resize', this.resizeBind);
     }
   }
 
@@ -68,26 +67,26 @@ class Steps extends React.Component {
         return;
       }
       const len = nextProps.children.length - 1;
-      this._itemsWidth = new Array(len + 1);
+      this.itemsWidth = new Array(len + 1);
 
       let i;
       for (i = 0; i <= len - 1; i++) {
-        this._itemsWidth[i] = nextProps.maxDescriptionWidth;
+        this.itemsWidth[i] = nextProps.maxDescriptionWidth;
       }
-      this._itemsWidth[i] = nextProps.maxDescriptionWidth;
-      this._update(nextProps);
+      this.itemsWidth[i] = nextProps.maxDescriptionWidth;
+      this.update(nextProps);
     }
   }
 
   componentDidUpdate() {
-    this._resize();
-    const $dom = ReactDOM.findDOMNode(this);
+    this.resize();
+    const $dom = this.root;
 
     const len = $dom.children.length - 1;
-        /*
-         * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
-         * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
-         */
+    /*
+     * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
+     * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
+     */
     for (let i = 0; i <= len; i++) {
       $dom.children[i].style.position = 'relative';
     }
@@ -100,27 +99,27 @@ class Steps extends React.Component {
       return;
     }
     if (window.attachEvent) {
-      window.detachEvent('onresize', this._resizeBind);
+      window.detachEvent('onresize', this.resizeBind);
     } else {
-      window.removeEventListener('resize', this._resizeBind);
+      window.removeEventListener('resize', this.resizeBind);
     }
   }
 
-  _resize() {
+  resize() {
     this.fixLastDetailHeight();
-    const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
-    if (this._previousStepsWidth === w) {
+    const w = Math.floor(this.root.offsetWidth);
+    if (this.previousStepsWidth === w) {
       return;
     }
-    this._previousStepsWidth = w;
-    this._update();
+    this.previousStepsWidth = w;
+    this.update();
   }
 
   fixLastDetailHeight() {
-        /*
-         * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
-         * */
-    const $dom = ReactDOM.findDOMNode(this);
+    /*
+     * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
+     * */
+    const $dom = this.root;
     const len = $dom.children.length - 1;
     const $domLastDetail = $dom.children[len];
     if (this.props.currentDetail === len && $dom.offsetHeight <= $domLastDetail.offsetHeight) {
@@ -130,12 +129,12 @@ class Steps extends React.Component {
     }
   }
 
-  _update(props = this.props) {
+  update(props = this.props) {
     const len = props.children.length - 1;
-    const tw = this._itemsWidth.reduce((prev, w) =>
-            prev + w
-            , 0);
-    const dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
+    const tw = this.itemsWidth.reduce((prev, w) =>
+      prev + w
+      , 0);
+    const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
     if (dw <= 0) {
       return;
     }
@@ -148,27 +147,27 @@ class Steps extends React.Component {
   render() {
     let { current } = this.props;
     const {
-            prefixCls,
-            className,
-            children,
-            maxDescriptionWidth,
-            iconPrefix,
-            direction,
-            showIcon,
-            type,
-            showDetail,
-            currentDetail,
-            onChange,
-        } = this.props;
+      prefixCls,
+      className,
+      children,
+      maxDescriptionWidth,
+      iconPrefix,
+      direction,
+      showIcon,
+      type,
+      showDetail,
+      currentDetail,
+      onChange,
+    } = this.props;
     const len = children.length - 1;
-    const iws = this._itemsWidth;
+    const iws = this.itemsWidth;
     let clsName = prefixCls;
     let fixStyle;
     if (direction === 'vertical') {
       clsName += ` ${prefixCls}-vertical ${className}`;
     } else {
       clsName += ` ${prefixCls}-type-${type} ${className}`;
-            // fix #5
+      // fix #5
       if (type === 'default') {
         const descItemsCount = children.filter(d => d.props.description).length;
         if (descItemsCount > 0 && descItemsCount !== len + 1) {
@@ -186,7 +185,7 @@ class Steps extends React.Component {
     }
 
     return (
-      <div className={clsName}>
+      <div className={clsName} ref={(c) => { this.root = c; }}>
         {React.Children.map(children, (ele, idx) => {
           const np = {
             stepNumber: showIcon ? (idx + 1).toString() : '',
@@ -198,14 +197,22 @@ class Steps extends React.Component {
             fixStyle,
             showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
             detailContentFixStyle: {
-              marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx) ? -(iws[idx] + this.state.tailWidth) * idx : 0,
-              width: this._previousStepsWidth,
+              marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx)
+                ? -(iws[idx] + this.state.tailWidth) * idx
+                : 0,
+              width: this.previousStepsWidth,
             },
             onChange,
             hasDetail: showDetail && direction !== 'vertical' && type !== 'long-desc',
           };
           if (!ele.props.status) {
-            np.status = idx === current ? 'process' : idx < current ? 'finish' : 'wait';
+            if (idx === current) {
+              np.status = 'process';
+            } else if (idx < current) {
+              np.status = 'finish';
+            } else {
+              np.status = 'wait';
+            }
           }
           return React.cloneElement(ele, np);
         }, this)}
@@ -242,6 +249,7 @@ Steps.propTypes = {
   showDetail: React.PropTypes.bool,
   currentDetail: React.PropTypes.number,
   onChange: React.PropTypes.func,
+  children: React.PropTypes.any,
 };
 
 Steps.displayName = 'Steps';

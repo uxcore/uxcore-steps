@@ -1,5 +1,9 @@
 # History
 
+## 2.0.0
+
+`CHANGED` new style
+
 ## 1.1.7
 `FIXED` #5
 
