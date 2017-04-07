@@ -68,7 +68,7 @@ class Demo extends React.Component {
         </div>
         <h3>横向步骤条(样式二)</h3>
         <div className="demo-box">
-          <Steps current={1} showIcon>
+          <Steps current={1} showIcon={false}>
             <Step key={0} title={'步骤一'} description="内容文案内容文案内容文案内容文案" />
             <Step key={1} title={'步骤二'} description="内容文案内容文案内容文案内容文案" />
             <Step key={2} title={'步骤三'} description="内容文案内容文案内容文案内容文案" />
