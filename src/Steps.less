@@ -48,7 +48,7 @@
     position: absolute;
     left: 0;
     top: @__step-normal-icon-size / 2 + 7;
-    // padding: 0 10px 0 @__step-normal-icon-size + 10;
+    padding: 0 0 0 @__step-normal-icon-size;
     width: 100%;
     >i {
       display: block;
@@ -245,7 +245,7 @@
     .@{__step-prefix-cls}-tail {
       left: @__step-normal-icon-size / 2 - 1;
       top: 0;
-      // padding: @__step-normal-icon-size + 8 0 9px 0;
+      padding: @__step-normal-icon-size 0 0 0;
       width: 0;
       height: 100%;
       i {
@@ -319,7 +319,7 @@
     }
     .@{__step-prefix-cls}-tail {
       // padding: 0 0 0 22px;
-      padding: 0px;
+      padding: 0 0 0 10px;
     }
     .@{__step-prefix-cls}-status-wait {
       .@{__step-prefix-cls}-icon {
@@ -329,7 +329,7 @@
     }
     &.@{__step-prefix-cls}-vertical {
       .@{__step-prefix-cls}-head {
-        top: -6px;
+        top: -5px;
         left: 8px;
       }
       .@{__step-prefix-cls}-main {
@@ -338,7 +338,7 @@
         }
       }
       .@{__step-prefix-cls}-tail {
-        padding: 0px 0 0 1px;
+        padding: 10px 0 0 1px;
       }
     }
   }

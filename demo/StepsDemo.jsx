@@ -31,7 +31,7 @@ class Demo extends React.Component {
         <h3>横向步骤条(标准)</h3>
         <div className="demo-box">
           <Steps
-            current={3} showIcon
+            current={1} showIcon
             onChange={this.cb.bind(this)} showDetail currentDetail={this.state.c}
           >
             <Step key={0} title={'步骤一'} >步骤1, 利用回调函数改变currentDetail取值来切换详情面板</Step>
@@ -56,7 +56,7 @@ class Demo extends React.Component {
           </Steps>
         </div>
         <div className="demo-box">
-          <Steps current={3} showIcon={false}>
+          <Steps current={1} showIcon={false}>
             <Step key={0} title={'步骤一'} />
             <Step key={1} title={'步骤二'} />
             <Step key={2} title={'步骤三'} />
@@ -68,7 +68,7 @@ class Demo extends React.Component {
         </div>
         <h3>横向步骤条(样式二)</h3>
         <div className="demo-box">
-          <Steps current={3} showIcon>
+          <Steps current={1} showIcon>
             <Step key={0} title={'步骤一'} description="内容文案内容文案内容文案内容文案" />
             <Step key={1} title={'步骤二'} description="内容文案内容文案内容文案内容文案" />
             <Step key={2} title={'步骤三'} description="内容文案内容文案内容文案内容文案" />
@@ -78,7 +78,7 @@ class Demo extends React.Component {
         </div>
         <h3>显示时间的步骤条</h3>
         <div className="demo-box">
-          <Steps current={3} showIcon type="title-on-top" >
+          <Steps current={1} showIcon type="title-on-top" >
             <Step key={0} title={'步骤一'} description="2015-10-11" />
             <Step key={1} title={'步骤二'} description="2015-10-12" />
             <Step key={2} title={'步骤三'} description="2015-10-13" />
@@ -88,7 +88,7 @@ class Demo extends React.Component {
         </div>
         <h3>大量文案描述的步骤条</h3>
         <div className="demo-box">
-          <Steps current={3} showIcon type="long-desc" showDetail currentDetail={0}>
+          <Steps current={1} showIcon type="long-desc" showDetail currentDetail={0}>
             <Step key={0} title={'步骤一'} description="这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案" />
             <Step key={1} title={'步骤二'} description="这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案" />
             <Step key={2} title={'步骤三'} description="这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案" />
@@ -99,7 +99,7 @@ class Demo extends React.Component {
         <div className="vertical-demo">
           <h3>纵向步骤条</h3>
           <div className="demo-box">
-            <Steps current={3} showIcon direction="vertical">
+            <Steps current={1} showIcon direction="vertical">
               <Step key={0} title={'步骤一'} description="这里是说明文案" />
               <Step key={1} title={'步骤二'} description="这里是说明文案" />
               <Step key={2} title={'步骤三'} description="这里是说明文案" />
@@ -111,7 +111,7 @@ class Demo extends React.Component {
         <div className="vertical-demo">
           <h3>纵向步骤条(无 icon)</h3>
           <div className="demo-box">
-            <Steps current={3} direction="vertical" showIcon={false}>
+            <Steps current={1} direction="vertical" showIcon={false}>
               <Step key={0} title={'步骤一'} description="这里是说明文案" />
               <Step key={1} title={'步骤二'} description="这里是说明文案" />
               <Step key={2} title={'步骤三'} description="这里是说明文案" />
