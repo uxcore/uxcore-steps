@@ -116,6 +116,8 @@
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
         display: -webkit-box;
+        border: 1px solid @normal-alpha-6;
+        border-radius: @global-border-radius;
       }
       .@{__step-prefix-cls}-description-arrow {
         position: absolute;
@@ -129,7 +131,8 @@
         content: ' ';
         line-height: 0;
         display: block;
-        &:before {
+        &:before, 
+        &:after {
           border-color: transparent;
           border-style: solid;
           border-width: 5px;
@@ -139,8 +142,12 @@
           line-height: 0;
           display: block;
           position: absolute;
-          bottom: 3px;
+          bottom: 4px;
           left: -5px;
+        }
+        &:before {
+          bottom: 3px;
+          border-top-color: @normal-alpha-6;
         }
       }
     }
@@ -222,6 +229,9 @@
       border-color: @normal-alpha-6;
       color: @normal-alpha-6;
     }
+    .@{__step-prefix-cls}-title {
+      color: @normal-alpha-5;
+    }
   }
   .@{__step-prefix-cls}-status-process {
     .@{__step-prefix-cls}-title {
@@ -300,9 +310,9 @@
       left: 0px;
       // padding-left: 6px;
       .@{__step-prefix-cls}-icon {
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
         &:after {
           content: '';
         }
@@ -323,7 +333,7 @@
     }
     .@{__step-prefix-cls}-tail {
       // padding: 0 0 0 22px;
-      padding: 0 0 0 10px;
+      padding: 0 0 0 12px;
     }
     .@{__step-prefix-cls}-status-wait {
       .@{__step-prefix-cls}-icon {
@@ -334,7 +344,7 @@
     &.@{__step-prefix-cls}-vertical {
       .@{__step-prefix-cls}-head {
         top: -5px;
-        left: 8px;
+        left: 7px;
       }
       .@{__step-prefix-cls}-main {
         .@{__step-prefix-cls}-title {
