@@ -60,7 +60,7 @@ class Step extends React.Component {
         </div>
         <div className={`${prefixCls}-main`} style={{ maxWidth }}>
           <div className={`${prefixCls}-detail-arrow`} style={{ display: (props.showDetail ? 'block' : 'none') }} />
-          <div className={`${prefixCls}-title`}>{props.title}</div>
+          <div className={`${prefixCls}-title`} title={props.title}>{props.title}</div>
           <div>
             {description}
             {description ? <div className={`${prefixCls}-description-arrow`} /> : null}
