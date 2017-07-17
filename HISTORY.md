@@ -1,5 +1,9 @@
 # History
 
+## 2.0.4
+
+`FIXED` style fix for long step title
+
 ## 2.0.1
 
 `FIXED` style bug
