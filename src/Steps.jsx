@@ -236,7 +236,6 @@ Steps.defaultProps = {
   },
 };
 
-// http://facebook.github.io/react/docs/reusable-components.html
 Steps.propTypes = {
   prefixCls: React.PropTypes.string,
   className: React.PropTypes.string,
@@ -245,7 +244,7 @@ Steps.propTypes = {
   current: React.PropTypes.number,
   direction: React.PropTypes.string,
   showIcon: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc']),
+  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'arrow-bar']),
   showDetail: React.PropTypes.bool,
   currentDetail: React.PropTypes.number,
   onChange: React.PropTypes.func,

@@ -8,7 +8,9 @@
 
 @__step-prefix-cls: kuma-step;
 @__step-normal-icon-size: 24px;
-@__step-min-icon-size: 12px;
+@__step_icon_tail_spacing: 4px;
+@__step_font_size: 12px;
+@__step-min-icon-size: 10px;
 .@{__step-prefix-cls} {
   margin-left: 30px;
   .@{__step-prefix-cls}-item {
@@ -48,7 +50,7 @@
     position: absolute;
     left: 0;
     top: @__step-normal-icon-size / 2 + 7;
-    padding: 0 0 0 @__step-normal-icon-size;
+    padding: 0 @__step_icon_tail_spacing 0 @__step-normal-icon-size + @__step_icon_tail_spacing;
     width: 100%;
     >i {
       display: block;
@@ -61,16 +63,17 @@
     position: absolute;
     left: 0;
     top: 8px;
+    padding-right: @__step_icon_tail_spacing;
     z-index: 1;
     .@{__step-prefix-cls}-icon {
       display: inline-block;
       width: @__step-normal-icon-size;
       height: @__step-normal-icon-size;
       border-radius: @__step-normal-icon-size / 2;
-      border: 1px solid @brand-success;
+      border: 2px solid @brand-success;
       text-align: center;
-      line-height: @__step-normal-icon-size - 2;
-      font-size: @__step-min-icon-size;
+      line-height: @__step-normal-icon-size - 4;
+      font-size: @__step_font_size;
       vertical-align: middle;
     }
   }
@@ -283,7 +286,7 @@
     margin-left: 20px;
     .@{__step-prefix-cls}-head {
       .@{__step-prefix-cls}-icon {
-        font-size: 12px;
+        font-size: @__step_font_size;
       }
     }
     .@{__step-prefix-cls}-tail {
@@ -302,21 +305,21 @@
         width: @__step-min-icon-size;
         height: @__step-min-icon-size;
         border-radius: @__step-min-icon-size / 2;
-        line-height: @__step-min-icon-size - 2;
+        line-height: @__step-min-icon-size - 4;
       }
     }
   }
   &.@{__step-prefix-cls}-noicon {
     margin-left: 37px;
     .@{__step-prefix-cls}-head {
-      top: 9px;
+      top: 10px;
       // left: 6px;
       left: 0px;
       // padding-left: 6px;
       .@{__step-prefix-cls}-icon {
-        width: 12px;
-        height: 12px;
-        border-radius: 6px;
+        width: @__step-min-icon-size;
+        height: @__step-min-icon-size;
+        border-radius: @__step-min-icon-size / 2;
         &:after {
           content: '';
         }
@@ -337,12 +340,13 @@
     }
     .@{__step-prefix-cls}-tail {
       // padding: 0 0 0 22px;
-      padding: 0 0 0 12px;
+      padding: 0 @__step_icon_tail_spacing 0 @__step-min-icon-size + @__step_icon_tail_spacing;
     }
     .@{__step-prefix-cls}-status-wait {
       .@{__step-prefix-cls}-icon {
         background-color: @normal-alpha-9;
-        border-color: @normal-alpha-9;
+        border-color: @normal-alpha-6;
+        border-width: 2px;
       }
     }
     &.@{__step-prefix-cls}-vertical {

@@ -1,6 +1,11 @@
-import React from 'react';
+import { Component, PropTypes } from 'react';
 
-class Step extends React.Component {
+class Step extends Component {
+  constructor(props){
+    super(props);
+
+    this.onIconClick = this.onIconClick.bind(this);
+  }
 
   onIconClick() {
     if (this.props.hasDetail) {
@@ -9,67 +14,91 @@ class Step extends React.Component {
   }
 
   render() {
-    const props = this.props;
-    const status = props.status || 'wait';
-    const prefixCls = props.prefixCls;
-    const iconPrefix = props.iconPrefix;
-    const maxWidth = props.maxDescriptionWidth;
-    const iconName = props.icon ? props.icon : 'check';
-    let fixStyle = props.fixStyle;
-    let icon;
+    // Destructuring all vars from props
+    const {
+      icon = 'check',
+      prefixCls, 
+      iconPrefix, 
+      maxWidth, 
+      stepLast,
+      stepNumber,
+      fixStyle,
+      tailWidth,
+      title,
+      description,
+      hasDetail,
+      showDetail,
+      detailContentFixStyle,
+      children,
+      status = 'wait',
+    } = this.props;
+
     let stepCls = `${prefixCls}-item ${prefixCls}-status-${status}`;
-    let tail;
-    let description;
-    if ((!props.icon && status !== 'process') || !props.stepLast) {
-      icon = <span className={`${prefixCls}-icon`}>{props.stepNumber}</span>;
+
+    // Step styles by calculating
+    let stepStyle;
+    if (fixStyle) {
+      stepStyle = { 
+        width: tailWidth, 
+        ...fixStyle,
+      };
     } else {
-      icon = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${iconName}`} />;
+      stepStyle = {
+        width: tailWidth,
+      };
     }
 
-    if (props.stepLast) {
+    // ICON Jsx
+    let iconJsx;
+    if ((!icon && status !== 'process') || !stepLast) {
+      iconJsx = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+    } else {
+      iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${icon}`} />;
+    }
+    
+    // Tail Jsx
+    let tailJsx = null;
+    if (stepLast) {
       stepCls += ` ${prefixCls}-item-last`;
     } else {
-      tail = <div className={`${prefixCls}-tail`}><i /></div>;
+      tailJsx = <div className={`${prefixCls}-tail`}><i /></div>;
     }
-    if (props.icon) {
+
+    if (icon) {
       stepCls += ` ${prefixCls}-custom`;
     }
-    if (props.description) {
-      description = (<div className={`${prefixCls}-description`}>
-        {props.description}
+
+    // Description Jsx
+    let descriptionJsx = null;
+    if (description) {
+      descriptionJsx = (<div className={`${prefixCls}-description`}>
+        {description}
       </div>);
     } else {
       stepCls += ` ${prefixCls}-no-desc`;
     }
 
-    if (fixStyle) {
-      fixStyle.width = props.tailWidth;
-    } else {
-      fixStyle = {
-        width: props.tailWidth,
-      };
-    }
-
-    const detailCls = `${prefixCls}-detail ${(props.showDetail ? `${prefixCls}-detail-current` : '')}`;
-    const headStyleFixed = { cursor: (props.hasDetail ? 'pointer' : 'default') };
+    const detailCls = `${prefixCls}-detail ${(showDetail ? `${prefixCls}-detail-current` : '')}`;
+    const headStyle= { cursor: hasDetail ? 'pointer' : 'default' };
+    
     return (
-      <div className={`${stepCls}`} style={fixStyle}>
-        {tail}
-        <div className={`${prefixCls}-head`} style={headStyleFixed} onClick={this.onIconClick.bind(this)}>
-          <div className={`${prefixCls}-head-inner`}>{icon}</div>
+      <div className={`${stepCls}`} style={stepStyle}>
+        {tailJsx}
+        <div className={`${prefixCls}-head`} style={headStyle} onClick={this.onIconClick}>
+          <div className={`${prefixCls}-head-inner`}>{iconJsx}</div>
         </div>
         <div className={`${prefixCls}-main`} style={{ maxWidth }}>
-          <div className={`${prefixCls}-detail-arrow`} style={{ display: (props.showDetail ? 'block' : 'none') }} />
-          <div className={`${prefixCls}-title`} title={props.title}>{props.title}</div>
+          <div className={`${prefixCls}-detail-arrow`} style={{ display: (showDetail ? 'block' : 'none') }} />
+          <div className={`${prefixCls}-title`} title={title}>{title}</div>
           <div>
-            {description}
-            {description ? <div className={`${prefixCls}-description-arrow`} /> : null}
+            {descriptionJsx}
+            {descriptionJsx ? <div className={`${prefixCls}-description-arrow`} /> : null}
           </div>
         </div>
         <div className={detailCls}>
-          <div className={`${prefixCls}-detail-con`} style={props.detailContentFixStyle}>
+          <div className={`${prefixCls}-detail-con`} style={detailContentFixStyle}>
             <div className={`${prefixCls}-detail-content`}>
-              {props.children}
+              {children}
             </div>
           </div>
         </div>
@@ -79,12 +108,18 @@ class Step extends React.Component {
 }
 
 Step.propTypes = {
-  hasDetail: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  stepNumber: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  hasDetail: PropTypes.bool,
+  onChange: PropTypes.func,
+  stepNumber: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]),
 };
 
-module.exports = Step;
+Step.defaultProps = {
+  hasDetail: false,
+};
+
+Step.displayName = 'Step';
+
+export default Step;
