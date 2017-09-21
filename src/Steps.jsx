@@ -23,6 +23,10 @@ class Steps extends React.Component {
       return;
     }
 
+    if (this.props.type === 'arrow-bar'){
+      return;
+    }
+
     const $dom = this.root;
     const len = $dom.children.length - 1;
     this.itemsWidth = new Array(len + 1);
@@ -79,6 +83,10 @@ class Steps extends React.Component {
   }
 
   componentDidUpdate() {
+    if (this.props.type === 'arrow-bar'){
+      return;
+    }
+
     this.resize();
     const $dom = this.root;
 
@@ -115,10 +123,14 @@ class Steps extends React.Component {
     this.update();
   }
 
+  /*
+   * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
+   */
   fixLastDetailHeight() {
-    /*
-     * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
-     * */
+    if (this.props.type === 'arrow-bar'){
+      return;
+    }
+
     const $dom = this.root;
     const len = $dom.children.length - 1;
     const $domLastDetail = $dom.children[len];
@@ -188,6 +200,7 @@ class Steps extends React.Component {
       <div className={clsName} ref={(c) => { this.root = c; }}>
         {React.Children.map(children, (ele, idx) => {
           const np = {
+            type,
             stepNumber: showIcon ? (idx + 1).toString() : '',
             stepLast: idx === len,
             tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
@@ -244,7 +257,7 @@ Steps.propTypes = {
   current: React.PropTypes.number,
   direction: React.PropTypes.string,
   showIcon: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'arrow-bar']),
+  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
   showDetail: React.PropTypes.bool,
   currentDetail: React.PropTypes.number,
   onChange: React.PropTypes.func,
