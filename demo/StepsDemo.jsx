@@ -6,8 +6,6 @@
  * All rights reserved.
  */
 
-// let classnames = require('classnames');
-
 import React from 'react';
 import Steps, { Step } from '../src';
 
@@ -27,13 +25,40 @@ class Demo extends React.Component {
   render() {
     return (
       <div className="uxcore-steps-demo">
-        <h3>横向步骤条(标准)</h3>
+        <h3>横向步骤条(横向基础)</h3>
         <div className="demo-box">
-          <Steps current={2} type="arrow-bar">
+          <Steps current={0} type="arrow-bar">
+            <Step key={0} title={'步骤一'} />
+            <Step key={1} title={'步骤二'} />
+            <Step key={2} title={'步骤二'} />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={1} type="arrow-bar">
+            <Step key={0} title={'步骤一'} />
+            <Step key={1} title={'步骤二'} />
+            <Step key={2} title={'步骤三'} />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={1} type="arrow-bar">
+            <Step key={0} title={'步骤一'} />
+            <Step key={1} title={'步骤二'} status="error" />
+            <Step key={2} title={'步骤三'} />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={1} type="arrow-bar">
             <Step key={0} title={'步骤一'} />
             <Step key={1} title={'步骤二'} description="描述文案" />
-            <Step key={2} title={'步骤三'} status="error" />
-            <Step key={3} title={'步骤四'} />
+            <Step key={2} title={'步骤三'} />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={1} type="arrow-bar">
+            <Step key={0} title={'步骤一'}  editable />
+            <Step key={1} title={'步骤二'} status="error" />
+            <Step key={2} title={'步骤三'} description="描述文案" />
           </Steps>
         </div>
         <div className="demo-box">
@@ -70,6 +95,13 @@ class Demo extends React.Component {
         </div>
         <h3>横向步骤条(可返回编辑)</h3>
         <div className="demo-box">
+          <Steps current={1} type="arrow-bar">
+            <Step key={0} title={'步骤一'} editable />
+            <Step key={1} title={'步骤二'} />
+            <Step key={2} title={'步骤二'} />
+          </Steps>
+        </div>
+        <div className="demo-box">
           <Steps current={2} type="bottom-desc">
             <Step key={0} title={'步骤一'} description="描述文案" editable />
             <Step key={1} title={'步骤二'} description="描述文案" />
@@ -89,29 +121,71 @@ class Demo extends React.Component {
         <div className="vertical-demo">
           <h3>不可返回编辑</h3>
           <div className="demo-box">
-            <Steps current={1} showIcon direction="vertical">
-              <Step key={0} title={'步骤一'} description="这里是说明文案" />
-              <Step key={1} title={'步骤二'} description="这里是说明文案" />
-              <Step key={2} title={'步骤三'} description="这里是说明文案" />
-              <Step key={3} title={'步骤四'} description="这里是说明文案" />
-              <Step key={4} title={'已完成'} description="这里是说明文案" />
+            <Steps current={2} showIcon direction="vertical">
+              <Step key={0} title={'步骤一'} description="描述文字" />
+              <Step key={1} title={'步骤二'} description="描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字" />
+              <Step key={3} title={'步骤四'} description="描述文字" />
             </Steps>
           </div>
         </div>
         <div className="vertical-demo">
           <h3>可返回编辑</h3>
           <div className="demo-box">
-            <Steps current={1} direction="vertical" showIcon={false}>
-              <Step key={0} title={'步骤一'} description="这里是说明文案" />
-              <Step key={1} title={'步骤二'} description="这里是说明文案" />
-              <Step key={2} title={'步骤三'} description="这里是说明文案" />
-              <Step key={3} title={'步骤四'} description="这里是说明文案" />
-              <Step key={4} title={'已完成'} description="这里是说明文案" />
+            <Steps current={2} direction="vertical">
+              <Step key={0} title={'步骤一'} description="描述文字" editable />
+              <Step key={1} title={'步骤二'} description="描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字" />
+              <Step key={3} title={'步骤四'} description="描述文字" />
             </Steps>
           </div>
         </div>
-
-
+        <div className="vertical-demo">
+          <h3>出错提示</h3>
+          <div className="demo-box">
+            <Steps current={2} direction="vertical">
+              <Step key={0} title={'步骤一'} description="描述文字" />
+              <Step key={1} title={'步骤二'} description="描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字" status="error" />
+              <Step key={3} title={'步骤四'} description="描述文字" />
+            </Steps>
+          </div>
+        </div>
+        <div className="vertical-demo">
+          <h3>不可返回编辑（迷你版）</h3>
+          <div className="demo-box">
+            <Steps current={2} showIcon={false} direction="vertical">
+              <Step key={0} title={'步骤一'} description="描述文字" />
+              <Step key={1} title={'步骤二'} description="描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字" />
+              <Step key={3} title={'步骤四'} description="描述文字" />
+            </Steps>
+          </div>
+        </div>
+        <div className="vertical-demo">
+          <h3>可返回编辑（迷你版）</h3>
+          <div className="demo-box">
+            <Steps current={2} showIcon={false} direction="vertical">
+              <Step key={0} title={'步骤一'} description="描述文字" editable />
+              <Step key={1} title={'步骤二'} description="描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字" />
+              <Step key={3} title={'步骤四'} description="描述文字" />
+            </Steps>
+          </div>
+        </div>
+        <div className="vertical-demo">
+          <h3>出错提示（迷你版）</h3>
+          <div className="demo-box">
+            <Steps current={2} showIcon={false} direction="vertical">
+              <Step key={0} title={'步骤一'} description="描述文字" />
+              <Step key={1} title={'步骤二'} description="描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字" status="error" />
+              <Step key={3} title={'步骤四'} description="描述文字" />
+            </Steps>
+          </div>
+        </div>
+        <hr />
+        <h2>老版本兼容</h2>
         <div className="demo-box">
           <Steps
             current={1} showIcon

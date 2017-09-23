@@ -11,7 +11,7 @@ class Step extends Component {
 
   onIconClick() {
     if (this.props.hasDetail || this.props.editable) {
-      this.props.onChange(Number(this.props.stepNumber) - 1);
+      this.props.onChange(this.props.stepNumber - 1);
     }
   }
 
@@ -20,6 +20,7 @@ class Step extends Component {
     const {
       prefixCls, 
       type,
+      showIcon,
       icon,
       iconPrefix, 
       maxDescriptionWidth, 
@@ -39,12 +40,16 @@ class Step extends Component {
 
     // arrow-bar 是一种完全不一样的类型，之前的逻辑完全用不到，提前返回
     if (type === 'arrow-bar') {
-      const arrowbarStepCls = `kuma-step-item-arrowbar status-${status}`;
+      let arrowbarStepCls = `${prefixCls}-item-arrowbar ${prefixCls}-status-${status}`;
+      if (editable) {
+        arrowbarStepCls = `${arrowbarStepCls} ${prefixCls}-editable`;
+      }
+
       let arrowJsx = null;
       if (!stepLast) {
         arrowJsx = (<div>
-          <div className="arrow-right"></div>
-          <div className="arrow-right-bg"></div>
+          <div className={`${prefixCls}-arrow-right`}></div>
+          <div className={`${prefixCls}-arrow-right-bg`}></div>
         </div>);
       }
 
@@ -57,7 +62,7 @@ class Step extends Component {
       }
 
       return (<div className={arrowbarStepCls}>
-        <div className="step-title">
+        <div className={`${prefixCls}-title`}>
           <span>{title}</span>
           {descJsx}
         </div>
@@ -84,29 +89,21 @@ class Step extends Component {
       };
     }
 
-    // ICON Jsx，逻辑：如果用户指定了 icon 就用指定的 icon，否则根据状态确定 icon
-    let iconName = icon;
-    if (!iconName){
-      if (status === 'finish') {
-        iconName = 'check';
-      } else if (status === 'error') {
-        iconName = 'error';
+    // 节点图标，逻辑：如果用户指定了 icon 就用指定的 icon，否则根据状态确定 icon
+    let iconJsx = <span className={`${prefixCls}-icon`}></span>;
+    if (showIcon) {
+      iconJsx = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+      if (icon) {
+        stepCls += ` ${prefixCls}-custom`;
+        iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${icon}`} />;
+      } else {
+        if (status === 'finish') {
+          iconJsx = <span className={`${prefixCls}-icon`}><Icon name="option-yixuan-gou" /></span>;
+        } else if (status === 'error') {
+          iconJsx = <span className={`${prefixCls}-icon`}><Icon name="biaoqian-qingchu" /></span>;
+        }
       }
     }
-
-    let iconJsx = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
-    if (iconName) {
-      iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${iconName}`} />;
-    }
-
-    /*
-    if ((!icon && status !== 'process') || !stepLast) {
-      iconJsx = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
-    } else {
-      const iconName = icon ? icon : 'check';
-      iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${iconName}`} />;
-    }
-    */
     
     // 节点之间的连接线
     let tailJsx = null;
@@ -116,28 +113,24 @@ class Step extends Component {
       tailJsx = <div className={`${prefixCls}-tail`}><i /></div>;
     }
 
-    if (icon) {
-      stepCls += ` ${prefixCls}-custom`;
-    }
-
     const headStyle= { cursor: hasDetail ? 'pointer' : 'default' };
     const detailCls = `${prefixCls}-detail ${(showDetail ? `${prefixCls}-detail-current` : '')}`;
 
     // 描述，为了兼容之前的样式，默认还是已 pop 的方式放在上面，用户指定 bottom-desc 的类型后放到 title 下面
-    let descConttentJsx = null;
+    let descContentJsx = null;
     if (description) {
-      descConttentJsx = (<div className={`${prefixCls}-description`}>
+      descContentJsx = (<div className={`${prefixCls}-description`}>
         {description}
       </div>);
     } else {
       stepCls += ` ${prefixCls}-no-desc`;
     }
 
-    let descriptionDesc = descConttentJsx;
+    let descriptionDesc = descContentJsx;
     if (type !== 'bottom-desc') {
       descriptionDesc = (<div>
-        {descConttentJsx}
-        {descConttentJsx ? <div className={`${prefixCls}-description-arrow`} /> : null}
+        {descContentJsx}
+        {descContentJsx ? <div className={`${prefixCls}-description-arrow`} /> : null}
       </div>);
     }
 
@@ -168,10 +161,7 @@ Step.propTypes = {
   hasDetail: PropTypes.bool,
   editable: PropTypes.bool,
   onChange: PropTypes.func,
-  stepNumber: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  stepNumber: PropTypes.number,
 };
 
 Step.defaultProps = {
