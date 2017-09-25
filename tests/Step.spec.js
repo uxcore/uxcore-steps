@@ -102,10 +102,10 @@ describe('Step', () => {
   });
 
   it('should has editable style for type arrow-bar', () => {
-    const w = generateStep('finish', 'test', 'descp', 'dog', 'arrow-bar', {
+    const w = generateStep('finish', 'test', 'descp', 'dog', {
       stepLast: true,
       editable: true,
-    });
+    }, 'arrow-bar');
     expect(w.find('.kuma-step-editable').length).to.be(1);
   });
 
