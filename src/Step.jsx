@@ -1,9 +1,9 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Icon from 'uxcore-icon';
 import Tooltip from 'uxcore-tooltip';
 
 class Step extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.onIconClick = this.onIconClick.bind(this);
@@ -18,12 +18,12 @@ class Step extends Component {
   render() {
     // Destructuring all vars from props
     const {
-      prefixCls, 
+      prefixCls,
       type,
       showIcon,
       icon,
-      iconPrefix, 
-      maxDescriptionWidth, 
+      iconPrefix,
+      maxDescriptionWidth,
       stepLast,
       stepNumber,
       fixStyle,
@@ -48,8 +48,8 @@ class Step extends Component {
       let arrowJsx = null;
       if (!stepLast) {
         arrowJsx = (<div>
-          <div className={`${prefixCls}-arrow-right`}></div>
-          <div className={`${prefixCls}-arrow-right-bg`}></div>
+          <div className={`${prefixCls}-arrow-right`} />
+          <div className={`${prefixCls}-arrow-right-bg`} />
         </div>);
       }
 
@@ -79,8 +79,8 @@ class Step extends Component {
     // Step styles by calculating
     let stepStyle;
     if (fixStyle) {
-      stepStyle = { 
-        width: tailWidth, 
+      stepStyle = {
+        width: tailWidth,
         ...fixStyle,
       };
     } else {
@@ -90,21 +90,19 @@ class Step extends Component {
     }
 
     // 节点图标，逻辑：如果用户指定了 icon 就用指定的 icon，否则根据状态确定 icon
-    let iconJsx = <span className={`${prefixCls}-icon`}></span>;
+    let iconJsx = <span className={`${prefixCls}-icon`} />;
     if (showIcon) {
       iconJsx = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
       if (icon) {
         stepCls += ` ${prefixCls}-custom`;
         iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${icon}`} />;
-      } else {
-        if (status === 'finish') {
-          iconJsx = <span className={`${prefixCls}-icon`}><Icon name="option-yixuan-gou" /></span>;
-        } else if (status === 'error') {
-          iconJsx = <span className={`${prefixCls}-icon`}><Icon name="biaoqian-qingchu" /></span>;
-        }
+      } else if (status === 'finish') {
+        iconJsx = <span className={`${prefixCls}-icon`}><Icon name="option-yixuan-gou" /></span>;
+      } else if (status === 'error') {
+        iconJsx = <span className={`${prefixCls}-icon`}><Icon name="biaoqian-qingchu" /></span>;
       }
     }
-    
+
     // 节点之间的连接线
     let tailJsx = null;
     if (stepLast) {
@@ -113,7 +111,7 @@ class Step extends Component {
       tailJsx = <div className={`${prefixCls}-tail`}><i /></div>;
     }
 
-    const headStyle= { cursor: hasDetail ? 'pointer' : 'default' };
+    const headStyle = { cursor: hasDetail ? 'pointer' : 'default' };
     const detailCls = `${prefixCls}-detail ${(showDetail ? `${prefixCls}-detail-current` : '')}`;
 
     // 描述，为了兼容之前的样式，默认还是已 pop 的方式放在上面，用户指定 bottom-desc 的类型后放到 title 下面

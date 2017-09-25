@@ -20,7 +20,7 @@ const generateStep = (status, title, desc, icon, options) => {
     />
   );
   return wrapper;
-}
+};
 
 describe('Step', () => {
   describe('status prop', () => {
