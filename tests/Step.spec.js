@@ -1,14 +1,14 @@
 import expect from 'expect.js';
 import { mount } from 'enzyme';
 import React from 'react';
-// import ReactDOM from 'react-dom';
 
 import Step from '../src/Step';
 
-const generateStep = (status, title, desc, icon, options) => {
+const generateStep = (status, title, desc, icon, options, type = 'default') => {
   const wrapper = mount(
     <Step
       status={status}
+      type={type}
       title={title}
       description={desc}
       icon={icon}
@@ -20,7 +20,7 @@ const generateStep = (status, title, desc, icon, options) => {
     />
   );
   return wrapper;
-}
+};
 
 describe('Step', () => {
   describe('status prop', () => {
@@ -36,6 +36,22 @@ describe('Step', () => {
       const w = generateStep('finish', '', '', '');
       expect(w.find('.kuma-step-status-finish').length).to.be(1);
       w.node.onIconClick();
+    });
+    it('should display status error', () => {
+      const w = generateStep('error', '', '', '');
+      expect(w.find('.kuma-step-status-error').length).to.be(1);
+    });
+  });
+
+  describe('type arrow-bar', () => {
+    it('should render arrow-bar type', () => {
+      const w = generateStep('finish', 'test', '', '', '', 'arrow-bar');
+      expect(w.find('.kuma-step-item-arrowbar').length).to.be(1);
+    });
+
+    it('should render description', () => {
+      const w = generateStep('finish', 'test', 'this is description', '', '', 'arrow-bar');
+      expect(w.find('.step-info').length).to.be(1);
     });
   });
 
@@ -67,13 +83,30 @@ describe('Step', () => {
       const w = generateStep('process', 'test', 'descp', 'icon');
       expect(w.find('.kuma-step-icon').length).to.be(1);
     });
-    it('should display the icon with specific name while not processing', () => {
+    it('should display the custom icon', () => {
       const w = generateStep('process', 'test', 'descp', 'dog', {
         stepLast: true,
+        showIcon: true,
       });
       expect(w.find('.kuma-icon').length).to.be(1);
       expect(w.find('.kuma-icon-dog').length).to.be(1);
     });
+  });
+
+  it('should has editable style', () => {
+    const w = generateStep('finish', 'test', 'descp', 'dog', {
+      stepLast: true,
+      editable: true,
+    });
+    expect(w.find('.kuma-step-editable').length).to.be(1);
+  });
+
+  it('should has editable style for type arrow-bar', () => {
+    const w = generateStep('finish', 'test', 'descp', 'dog', {
+      stepLast: true,
+      editable: true,
+    }, 'arrow-bar');
+    expect(w.find('.kuma-step-editable').length).to.be(1);
   });
 
   it('should display the icon with last step', () => {

@@ -11,7 +11,7 @@ const generateSteps = (options = {}) => {
     showIcon: true,
     type: 'default', // default title-on-top or long-desc
   }, options || {});
-  const items = ['hello', 'hi'].map(i => <Steps.Step title={i} description={i} />);
+  const items = ['hello', 'hi'].map(i => <Steps.Step key={i} title={i} description={i} />);
   const wrapper = mount(
     <Steps
       prefixCls="kuma-step"
@@ -40,7 +40,25 @@ describe('Steps', () => {
         expect(i.props.children).to.be.an('array');
         done();
       }, 400);
-    })
+    });
+  });
+
+  describe('Umount Component', () => {
+    it('component unmount', () => {
+      const i = generateSteps();
+      i.render();
+      i.unmount();
+      // TODO：resize 事件不好处理
+      expect(1).to.be(1);
+    });
+
+    it('component unmount vertical', () => {
+      const i = generateSteps({ direction: 'vertical' });
+      i.render();
+      i.unmount();
+      // TODO：resize 事件不好处理
+      expect(1).to.be(1);
+    });
   });
 
   describe('Render Vertically', () => {
@@ -48,15 +66,15 @@ describe('Steps', () => {
       const i = generateSteps();
       const html = i.html();
       expect(html).to.contain('kuma-step');
-    })
+    });
   });
 
   describe('Render correct with current 2', () => {
     it('render result should be correct', () => {
-      const i = generateSteps({ current: '2' });
+      const i = generateSteps({ current: 2 });
       const html = i.html();
       expect(html).to.contain('kuma-step');
-    })
+    });
   });
 
   describe('Render correct with type: title on top', () => {
@@ -64,7 +82,7 @@ describe('Steps', () => {
       const i = generateSteps({ type: 'title-on-top' });
       const html = i.html();
       expect(html).to.contain('kuma-step-type-title-on-top');
-    })
+    });
   });
 
   describe('Render correct with type: long-desc', () => {
@@ -72,7 +90,15 @@ describe('Steps', () => {
       const i = generateSteps({ type: 'long-desc' });
       const html = i.html();
       expect(html).to.contain('kuma-step-type-long-desc');
-    })
+    });
+  });
+
+  describe('Render correct with type: arrow bar', () => {
+    it('render result should be correct', () => {
+      const i = generateSteps({ type: 'arrow-bar' });
+      const html = i.html();
+      expect(html).to.contain('kuma-step-type-arrow-bar');
+    });
   });
 
   describe('Render Vertically', () => {

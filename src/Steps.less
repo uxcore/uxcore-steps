@@ -8,15 +8,31 @@
 
 @__step-prefix-cls: kuma-step;
 @__step-normal-icon-size: 24px;
-@__step-min-icon-size: 12px;
+@__step_icon_tail_spacing: 4px;
+@__step_font_size: 12px;
+@__step-min-icon-size: 10px;
+@__step_arrow_bar_height: 24px;
 .@{__step-prefix-cls} {
   margin-left: 30px;
   .@{__step-prefix-cls}-item {
     position: relative;
     display: inline-block;
-    min-height: 70px;
+    min-height: 60px;
     margin-top: 74px;
+    margin-bottom: 25px;
     vertical-align: top;
+
+    &.@{__step-prefix-cls}-editable {
+      .@{__step-prefix-cls}-icon {
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
     .@{__step-prefix-cls}-main {
       .@{__step-prefix-cls}-detail-arrow {
         position: absolute;
@@ -27,11 +43,11 @@
         left: 13px;
         &::before {
           content: "\e613";
-          color: #ccc;
+          color: #e0e4e8;
         }
         &::after {
           content: "\e613";
-          color: #f2f2f2;
+          color: #f6f7f8;
           position: absolute;
           top: 2px;
           left: 0;
@@ -48,7 +64,7 @@
     position: absolute;
     left: 0;
     top: @__step-normal-icon-size / 2 + 7;
-    padding: 0 0 0 @__step-normal-icon-size;
+    padding: 0 @__step_icon_tail_spacing 0 @__step-normal-icon-size + @__step_icon_tail_spacing;
     width: 100%;
     >i {
       display: block;
@@ -61,16 +77,17 @@
     position: absolute;
     left: 0;
     top: 8px;
+    padding-right: @__step_icon_tail_spacing;
     z-index: 1;
     .@{__step-prefix-cls}-icon {
       display: inline-block;
       width: @__step-normal-icon-size;
       height: @__step-normal-icon-size;
       border-radius: @__step-normal-icon-size / 2;
-      border: 1px solid @brand-success;
+      border: 2px solid @brand-success;
       text-align: center;
-      line-height: @__step-normal-icon-size - 2;
-      font-size: @__step-min-icon-size;
+      line-height: @__step-normal-icon-size - 4;
+      font-size: @__step_font_size;
       vertical-align: middle;
     }
   }
@@ -84,6 +101,7 @@
       color: @dark-alpha-3;
     }
   }
+
   // 默认样式
   &.@{__step-prefix-cls}-type-default {
     .@{__step-prefix-cls}-item {
@@ -106,6 +124,10 @@
         text-overflow: ellipsis;
       }
       .@{__step-prefix-cls}-description {
+        position: absolute;
+        left: 12px;
+        display: inline-block;
+        width: 100px;
         position: absolute;
         left: -1em;
         bottom: 60px;
@@ -156,6 +178,7 @@
       }
     }
   }
+
   // title在顶部的
   &.@{__step-prefix-cls}-type-title-on-top {
     .@{__step-prefix-cls}-item {
@@ -182,6 +205,7 @@
       }
     }
   }
+
   // 包含大量描述的
   &.@{__step-prefix-cls}-type-long-desc {
     .@{__step-prefix-cls}-item {
@@ -201,32 +225,155 @@
       min-width: 180px;
     }
   }
-  .@{__step-prefix-cls}-status-process {
-    &.@{__step-prefix-cls}-item-last {
-      .@{__step-prefix-cls}-icon {
-        &:after {
-          font-family: 'kuma'!important;
-          content: '\e611';
+
+  // 新版步骤名和描述都在下方
+  &.@{__step-prefix-cls}-type-bottom-desc {
+    .@{__step-prefix-cls}-item {
+      margin-top: 0;
+    }
+    .@{__step-prefix-cls}-main {
+      position: absolute;
+      .@{__step-prefix-cls}-title {
+        position: relative;
+        left: 12px;
+        display: inline-block;
+        margin-left: -50%;
+        margin-top: 40px;
+        text-align: center;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .@{__step-prefix-cls}-description {
+        position: absolute;
+        left: 12px;
+        display: inline-block;
+        margin-left: -50px;
+        margin-top: 60px;
+        width: 100px;
+        text-align: center;
+      }
+    }
+
+    .@{__step-prefix-cls}-status-wait {
+      .@{__step-prefix-cls}-description {
+        color: @normal-alpha-5;
+      }
+    }
+  }
+
+  // 新版新增样式 arrow bar
+  &.@{__step-prefix-cls}-type-arrow-bar {
+    display: flex;
+    margin-left: 0 !important;
+
+    .@{__step-prefix-cls}-item-arrowbar {
+      overflow: hidden;
+      flex: 1;
+      height: @__step_arrow_bar_height;
+      margin-left: -12px;
+      position: relative;
+
+      .@{__step-prefix-cls}-title {
+        height: @__step_arrow_bar_height;
+        line-height: @__step_arrow_bar_height;
+        background-color: #F37327;
+        padding-left: 12px;
+        margin-right: 14px;
+        text-align: center;
+        color: #fff;
+
+        .step-info{
+          font-size: 14px;
+          margin-left: 2px;
+          vertical-align: -1px;
+        }
+      }
+
+      .@{__step-prefix-cls}-arrow-right{
+        position: absolute;
+        top: 0;
+        right: 2px;
+        z-index: 10;
+        width: 0; 
+        height: 0; 
+        border-top: @__step_arrow_bar_height / 2 solid transparent;
+        border-bottom: @__step_arrow_bar_height / 2 solid transparent;
+        border-left: @__step_arrow_bar_height / 2 solid #F37327;
+      }
+
+      .@{__step-prefix-cls}-arrow-right-bg{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 9;
+        width: 0; 
+        height: 0; 
+        border-top: @__step_arrow_bar_height / 2 solid transparent;
+        border-bottom: @__step_arrow_bar_height / 2 solid transparent;
+        border-left: @__step_arrow_bar_height / 2 solid #fff;
+      }
+
+      &:first-child {
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        margin-left: 0;
+
+        .@{__step-prefix-cls}-title {
+          padding-left: 0;
+        }
+      }
+
+      &:last-child {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+
+        .@{__step-prefix-cls}-title {
+          margin-right: 0;
+        }
+      }
+
+      &.@{__step-prefix-cls}-status-wait {
+        .@{__step-prefix-cls}-title {
+          color: @normal-alpha-4;
+          background-color: @normal-alpha-8;
+        }
+
+        .@{__step-prefix-cls}-arrow-right{
+          border-left: @__step_arrow_bar_height / 2 solid @normal-alpha-8;
+        }
+      }
+
+      &.@{__step-prefix-cls}-status-error {
+        .@{__step-prefix-cls}-title {
+          color: @brand-danger;
+          background-color: @brand-danger-alpha-7;
+        }
+
+        .@{__step-prefix-cls}-arrow-right{
+          border-left: @__step_arrow_bar_height / 2 solid @brand-danger-alpha-7;
+        }
+      }
+    }
+
+    .@{__step-prefix-cls}-editable {
+      &:hover {
+        cursor: pointer;
+
+        .@{__step-prefix-cls}-title {
+          background-color: #F3813F;
+        }
+
+        .@{__step-prefix-cls}-arrow-right{
+          border-left: @__step_arrow_bar_height / 2 solid #F3813F;
         }
       }
     }
   }
-  .@{__step-prefix-cls}-status-finish {
-    &.@{__step-prefix-cls}-item {
-      .@{__step-prefix-cls}-tail {
-        i {
-          background-color: @brand-success;
-        }
-      }
-    }
-  }
-  .@{__step-prefix-cls}-status-finish,
-  .@{__step-prefix-cls}-status-process {
-    .@{__step-prefix-cls}-icon {
-      background-color: @brand-success;
-      color: #fff;
-    }
-  }
+
+  // 不同状态
+  // wait, process=current, finish, error
   .@{__step-prefix-cls}-status-wait {
     .@{__step-prefix-cls}-icon {
       background-color: @normal-alpha-9;
@@ -238,28 +385,61 @@
     }
   }
   .@{__step-prefix-cls}-status-process {
+    .@{__step-prefix-cls}-icon {
+      background-color: @brand-success;
+      color: #fff;
+    }
     .@{__step-prefix-cls}-title {
-      color: @text-primary-color;
+      color: @dark-alpha-2;
     }
   }
+  .@{__step-prefix-cls}-status-finish {
+    .@{__step-prefix-cls}-tail {
+      i {
+        background-color: @brand-success !important;
+      }
+    }
+
+    .@{__step-prefix-cls}-icon {
+      background-color: #fff;
+      color: @brand-success;
+
+      &.icon-check {
+        &:after {
+          font-family: 'kuma'!important;
+          content: '\e611';
+        }
+      }
+    }
+  }
+  .@{__step-prefix-cls}-status-error {
+    .@{__step-prefix-cls}-title {
+      color: @brand-danger;
+    }
+    .@{__step-prefix-cls}-icon {
+      color: @brand-danger;
+      border-color: @brand-danger;
+    }
+  }
+
+  // 纵向
   &.@{__step-prefix-cls}-vertical {
     .@{__step-prefix-cls}-head {
       top: 0;
+      padding-right: 0;
+      padding-bottom: @__step_icon_tail_spacing;
+      background-color: #fff;
     }
     .@{__step-prefix-cls}-item {
       display: block;
       margin-top: 0;
+      margin-bottom: 0;
       min-height: 110px;
-      &.@{__step-prefix-cls}-status-process {
-        .@{__step-prefix-cls}-description {
-          color: @text-secondary-color;
-        }
-      }
     }
     .@{__step-prefix-cls}-tail {
       left: @__step-normal-icon-size / 2 - 1;
       top: 0;
-      padding: @__step-normal-icon-size 0 0 0;
+      padding: @__step-normal-icon-size 0 @__step_icon_tail_spacing 0;
       width: 0;
       height: 100%;
       i {
@@ -279,22 +459,22 @@
       }
     }
   }
+
+  // 微小风格
   .@{__step-prefix-cls}-small {
     margin-left: 20px;
     .@{__step-prefix-cls}-head {
       .@{__step-prefix-cls}-icon {
-        font-size: 12px;
+        font-size: @__step_font_size;
       }
     }
     .@{__step-prefix-cls}-tail {
       top: @__step-min-icon-size / 2 + 7;
-      // padding: 0 6px 0 @__step-min-icon-size + 4;
     }
     &.@{__step-prefix-cls}-vertical {
       .@{__step-prefix-cls}-tail {
         left: @__step-min-icon-size / 2 - 1;
         top: 0;
-        // padding: @__step-min-icon-size + 2 0 2px 0;
       }
     }
     .@{__step-prefix-cls}-head {
@@ -302,21 +482,23 @@
         width: @__step-min-icon-size;
         height: @__step-min-icon-size;
         border-radius: @__step-min-icon-size / 2;
-        line-height: @__step-min-icon-size - 2;
+        line-height: @__step-min-icon-size - 4;
       }
     }
   }
+
+  // 无图标风格
   &.@{__step-prefix-cls}-noicon {
     margin-left: 37px;
     .@{__step-prefix-cls}-head {
-      top: 9px;
-      // left: 6px;
+      top: 10px;
       left: 0px;
-      // padding-left: 6px;
       .@{__step-prefix-cls}-icon {
-        width: 12px;
-        height: 12px;
-        border-radius: 6px;
+        width: @__step-min-icon-size;
+        height: @__step-min-icon-size;
+        border-radius: @__step-min-icon-size / 2;
+        background-color: @brand-success;
+        
         &:after {
           content: '';
         }
@@ -336,19 +518,30 @@
       }
     }
     .@{__step-prefix-cls}-tail {
-      // padding: 0 0 0 22px;
-      padding: 0 0 0 12px;
+      padding: 0 @__step_icon_tail_spacing 0 @__step-min-icon-size + @__step_icon_tail_spacing;
     }
+
     .@{__step-prefix-cls}-status-wait {
       .@{__step-prefix-cls}-icon {
         background-color: @normal-alpha-9;
-        border-color: @normal-alpha-9;
+        border-color: @normal-alpha-6;
+        border-width: 2px;
       }
     }
+    .@{__step-prefix-cls}-status-error {
+      .@{__step-prefix-cls}-icon {
+        background-color: @brand-danger;
+        border-color: @brand-danger;
+      }
+    }
+
     &.@{__step-prefix-cls}-vertical {
       .@{__step-prefix-cls}-head {
         top: -5px;
-        left: 7px;
+        left: 8px;
+        padding-right: 0;
+        padding-bottom: @__step_icon_tail_spacing;
+        background-color: #fff;
       }
       .@{__step-prefix-cls}-main {
         .@{__step-prefix-cls}-title {
@@ -360,15 +553,17 @@
       }
     }
   }
+
   //包含详情的
   .@{__step-prefix-cls}-detail {
     >.@{__step-prefix-cls}-detail-con {
       display: none;
       margin-top: 74px;
       width: 800px;
-      background-color: rgba(242, 242, 242, 1);
+      background-color: @normal-alpha-9;
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid @normal-alpha-7;
+      border-radius: 3px;
     }
   }
   .@{__step-prefix-cls}-detail.@{__step-prefix-cls}-detail-current {

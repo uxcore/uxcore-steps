@@ -19,27 +19,28 @@ class Steps extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.direction === 'vertical') {
+    const { type, direction, maxDescriptionWidth } = this.props;
+    if (type === 'arrow-bar' || direction === 'vertical') {
       return;
     }
 
     const $dom = this.root;
-    const len = $dom.children.length - 1;
-    this.itemsWidth = new Array(len + 1);
+    const len = $dom.children.length;
+    this.itemsWidth = new Array(len);
 
-    let i;
-    for (i = 0; i <= len - 1; i++) {
-      this.itemsWidth[i] = this.props.maxDescriptionWidth;
+    // FIXME: 没太看懂，既然值都一样，为什么还要用一个数组？
+    for (let i = 0; i < len; i++) {
+      this.itemsWidth[i] = maxDescriptionWidth;
     }
-    this.itemsWidth[i] = this.props.maxDescriptionWidth;
-    this.previousStepsWidth = Math.floor(this.root.offsetWidth);
+
+    this.previousStepsWidth = Math.floor($dom.offsetWidth);
     this.update();
 
     /*
      * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
      * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
      */
-    $dom.children[len].style.position = 'absolute';
+    $dom.children[len-1].style.position = 'absolute';
 
     this.fixLastDetailHeight();
 
@@ -62,27 +63,31 @@ class Steps extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.children.length !== this.props.children.length) {
-      if (this.props.direction === 'vertical') {
-        return;
-      }
-      const len = nextProps.children.length - 1;
-      this.itemsWidth = new Array(len + 1);
+    if (this.props.direction === 'vertical') {
+      return;
+    }
 
-      let i;
-      for (i = 0; i <= len - 1; i++) {
+    if (nextProps.children.length !== this.props.children.length) {
+      const len = nextProps.children.length;
+      this.itemsWidth = new Array(len);
+
+      for (let i = 0; i <= len; i++) {
         this.itemsWidth[i] = nextProps.maxDescriptionWidth;
       }
-      this.itemsWidth[i] = nextProps.maxDescriptionWidth;
+
       this.update(nextProps);
     }
   }
 
   componentDidUpdate() {
+    if (this.props.type === 'arrow-bar'){
+      return;
+    }
+
     this.resize();
     const $dom = this.root;
-
     const len = $dom.children.length - 1;
+
     /*
      * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
      * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
@@ -98,6 +103,7 @@ class Steps extends React.Component {
     if (this.props.direction === 'vertical') {
       return;
     }
+
     if (window.attachEvent) {
       window.detachEvent('onresize', this.resizeBind);
     } else {
@@ -107,18 +113,24 @@ class Steps extends React.Component {
 
   resize() {
     this.fixLastDetailHeight();
+
     const w = Math.floor(this.root.offsetWidth);
     if (this.previousStepsWidth === w) {
       return;
     }
+
     this.previousStepsWidth = w;
     this.update();
   }
 
+  /*
+   * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
+   */
   fixLastDetailHeight() {
-    /*
-     * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
-     * */
+    if (this.props.type === 'arrow-bar'){
+      return;
+    }
+
     const $dom = this.root;
     const len = $dom.children.length - 1;
     const $domLastDetail = $dom.children[len];
@@ -188,7 +200,9 @@ class Steps extends React.Component {
       <div className={clsName} ref={(c) => { this.root = c; }}>
         {React.Children.map(children, (ele, idx) => {
           const np = {
-            stepNumber: showIcon ? (idx + 1).toString() : '',
+            type,
+            showIcon,
+            stepNumber: idx + 1,
             stepLast: idx === len,
             tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
             prefixCls,
@@ -198,7 +212,7 @@ class Steps extends React.Component {
             showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
             detailContentFixStyle: {
               marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx)
-                ? -(iws[idx] + this.state.tailWidth) * idx
+                ? -(iws[idx] + this.state.tailWidth) * idx - 41
                 : 0,
               width: this.previousStepsWidth,
             },
@@ -236,7 +250,6 @@ Steps.defaultProps = {
   },
 };
 
-// http://facebook.github.io/react/docs/reusable-components.html
 Steps.propTypes = {
   prefixCls: React.PropTypes.string,
   className: React.PropTypes.string,
@@ -245,7 +258,7 @@ Steps.propTypes = {
   current: React.PropTypes.number,
   direction: React.PropTypes.string,
   showIcon: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc']),
+  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
   showDetail: React.PropTypes.bool,
   currentDetail: React.PropTypes.number,
   onChange: React.PropTypes.func,
