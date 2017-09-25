@@ -1,58 +1,58 @@
 {
-  "name": "uxcore-steps",
-  "version": "2.0.4",
-  "description": "uxcore-steps component for uxcore.",
-  "repository": "https://github.com/uxcore/uxcore-steps.git",
-  "author": "vincent.bian",
-  "main": "build/index.js",
-  "scripts": {
-    "start": "uxcore-tools run start",
-    "server": "uxcore-tools run server",
-    "lint": "uxcore-tools run lint",
-    "build": "uxcore-tools run build",
-    "test": "uxcore-tools run test",
-    "coverage": "uxcore-tools run coverage",
-    "pub": "uxcore-tools run pub",
-    "dep": "uxcore-tools run dep",
-    "tnpm-dep": "uxcore-tools run tnpm-dep",
-    "chrome": "uxcore-tools run chrome",
-    "browsers": "uxcore-tools run browsers",
-    "saucelabs": "uxcore-tools run saucelabs",
-    "update": "uxcore-tools run update"
-  },
-  "bugs": {
-    "url": "http://github.com/uxcore/uxcore-steps/issues"
-  },
-  "keywords": [
-    "react",
-    "react-component",
-    "uxcore-steps",
-    "Steps"
-  ],
-  "devDependencies": {
-    "console-polyfill": "^0.2.2",
-    "enzyme": "^2.6.0",
-    "es5-shim": "^4.5.8",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
-    "expect.js": "~0.3.1",
-    "kuma-base": "1.x",
-    "object-assign": "^4.1.0",
-    "react": "0.14.x",
-    "react-addons-test-utils": "0.14.x",
-    "react-dom": "0.14.x",
-    "uxcore-kuma": "*",
-    "uxcore-tools": "0.2.x"
-  },
-  "dependencies": {
-    "classnames": "^2.1.2",
-    "object-assign": "^4.0.0",
-    "uxcore-icon": "^0.1.15",
-    "uxcore-tooltip": "^0.4.5"
-  },
-  "contributors": [],
-  "license": "MIT"
+ "name": "uxcore-steps",
+ "version": "2.1.0",
+ "description": "uxcore-steps component for uxcore.",
+ "repository": "https://github.com/uxcore/uxcore-steps.git",
+ "author": "vincent.bian",
+ "main": "build/index.js",
+ "scripts": {
+  "start": "uxcore-tools run start",
+  "server": "uxcore-tools run server",
+  "lint": "uxcore-tools run lint",
+  "build": "uxcore-tools run build",
+  "test": "uxcore-tools run test",
+  "coverage": "uxcore-tools run coverage",
+  "pub": "uxcore-tools run pub",
+  "dep": "uxcore-tools run dep",
+  "tnpm-dep": "uxcore-tools run tnpm-dep",
+  "chrome": "uxcore-tools run chrome",
+  "browsers": "uxcore-tools run browsers",
+  "saucelabs": "uxcore-tools run saucelabs",
+  "update": "uxcore-tools run update"
+ },
+ "bugs": {
+  "url": "http://github.com/uxcore/uxcore-steps/issues"
+ },
+ "keywords": [
+  "react",
+  "react-component",
+  "uxcore-steps",
+  "Steps"
+ ],
+ "devDependencies": {
+  "console-polyfill": "^0.2.2",
+  "enzyme": "^2.6.0",
+  "es5-shim": "^4.5.8",
+  "eslint": "^3.9.1",
+  "eslint-config-airbnb": "^12.0.0",
+  "eslint-plugin-import": "^1.16.0",
+  "eslint-plugin-jsx-a11y": "^2.2.3",
+  "eslint-plugin-react": "^6.4.1",
+  "expect.js": "~0.3.1",
+  "kuma-base": "1.x",
+  "object-assign": "^4.1.0",
+  "react": "0.14.x",
+  "react-addons-test-utils": "0.14.x",
+  "react-dom": "0.14.x",
+  "uxcore-kuma": "*",
+  "uxcore-tools": "0.2.x"
+ },
+ "dependencies": {
+  "classnames": "^2.1.2",
+  "object-assign": "^4.0.0",
+  "uxcore-icon": "^0.1.15",
+  "uxcore-tooltip": "^0.4.5"
+ },
+ "contributors": [],
+ "license": "MIT"
 }
