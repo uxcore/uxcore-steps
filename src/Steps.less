@@ -278,7 +278,7 @@
       .@{__step-prefix-cls}-title {
         height: @__step_arrow_bar_height;
         line-height: @__step_arrow_bar_height;
-        background-color: #F37327;
+        background-color: @brand-primary;
         padding-left: 12px;
         margin-right: 14px;
         text-align: center;
@@ -300,7 +300,7 @@
         height: 0; 
         border-top: @__step_arrow_bar_height / 2 solid transparent;
         border-bottom: @__step_arrow_bar_height / 2 solid transparent;
-        border-left: @__step_arrow_bar_height / 2 solid #F37327;
+        border-left: @__step_arrow_bar_height / 2 solid @brand-primary;
       }
 
       .@{__step-prefix-cls}-arrow-right-bg{
@@ -362,11 +362,11 @@
         cursor: pointer;
 
         .@{__step-prefix-cls}-title {
-          background-color: #F3813F;
+          background-color: @brand-primary-hover;
         }
 
         .@{__step-prefix-cls}-arrow-right{
-          border-left: @__step_arrow_bar_height / 2 solid #F3813F;
+          border-left: @__step_arrow_bar_height / 2 solid @brand-primary-hover;
         }
       }
     }
