@@ -1,5 +1,10 @@
 # History
 
+## 2.1.0
+
+`CHANGED` update style, change icons to uxcore-icon  
+`ADDED` new types: `bottom-desc` `arrow-bar`
+
 ## 2.0.4
 
 `FIXED` style fix for long step title
