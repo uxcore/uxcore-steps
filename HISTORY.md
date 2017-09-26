@@ -1,5 +1,9 @@
 # History
 
+## 2.1.1
+
+`FIXED` theme color variable usage
+
 ## 2.1.0
 
 `CHANGED` update style, change icons to uxcore-icon  
