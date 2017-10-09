@@ -283,6 +283,7 @@
         margin-right: 14px;
         text-align: center;
         color: #fff;
+        font-weight: normal;
 
         .step-info{
           font-size: 14px;
@@ -391,6 +392,7 @@
     }
     .@{__step-prefix-cls}-title {
       color: @dark-alpha-2;
+      font-weight: 700;
     }
   }
   .@{__step-prefix-cls}-status-finish {
@@ -415,6 +417,7 @@
   .@{__step-prefix-cls}-status-error {
     .@{__step-prefix-cls}-title {
       color: @brand-danger;
+      font-weight: 700;
     }
     .@{__step-prefix-cls}-icon {
       color: @brand-danger;
@@ -456,6 +459,11 @@
       .@{__step-prefix-cls}-description {
         margin-top: 4px;
         text-indent: 0;
+      }
+    }
+    .@{__step-prefix-cls}-status-wait {
+      .@{__step-prefix-cls}-description {
+        color: @normal-alpha-5;
       }
     }
   }
@@ -540,8 +548,17 @@
         top: -5px;
         left: 8px;
         padding-right: 0;
-        padding-bottom: @__step_icon_tail_spacing;
+        padding-bottom: 0;
         background-color: #fff;
+
+        .@{__step-prefix-cls}-head-inner{
+          height: 18px;
+          padding: 4px 0;
+
+          .@{__step-prefix-cls}-icon{
+            vertical-align: top;
+          }
+        }
       }
       .@{__step-prefix-cls}-main {
         .@{__step-prefix-cls}-title {

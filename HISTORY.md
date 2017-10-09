@@ -1,5 +1,8 @@
 # History
 
+## 2.1.2
+
+`FIXED` style fixes: vertical mini step spacing; current step title font weight
 ## 2.1.1
 
 `FIXED` theme color variable usage
