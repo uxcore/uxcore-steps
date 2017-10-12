@@ -15,11 +15,23 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       c: 4,
+      s1: 1,
+      s2: 1,
+      s3: 2,
+      s4: 2,
+      s5: 2,
+      s6: 2,
     };
   }
 
   cb(v) {
     this.setState({ c: v });
+  }
+
+  onChange(k, v) {
+    const st = this.state;
+    st[k] = v;
+    this.setState(st);
   }
 
   render() {
@@ -54,10 +66,10 @@ class Demo extends React.Component {
             <Step key={2} title={'步骤三'} />
           </Steps>
         </div>
-        <div className="demo-box">
-          <Steps current={1} type="arrow-bar">
-            <Step key={0} title={'步骤一'}  editable />
-            <Step key={1} title={'步骤二'} status="error" />
+        <div className="demo-box s1">
+          <Steps current={this.state.s1} type="arrow-bar" onChange={(v)=>{this.onChange('s1', v)}}>
+            <Step key={0} title={'步骤一'} editable />
+            <Step key={1} title={'步骤二'} status={this.state.s1 === 1 ? 'error' : ''} />
             <Step key={2} title={'步骤三'} description="描述文案" />
           </Steps>
         </div>
@@ -94,23 +106,23 @@ class Demo extends React.Component {
           </Steps>
         </div>
         <h3>横向步骤条(可返回编辑)</h3>
-        <div className="demo-box">
-          <Steps current={1} type="arrow-bar">
+        <div className="demo-box s2">
+          <Steps current={this.state.s2} type="arrow-bar" onChange={(v)=>{this.onChange( 's2',v)}}>
             <Step key={0} title={'步骤一'} editable />
             <Step key={1} title={'步骤二'} />
             <Step key={2} title={'步骤二'} />
           </Steps>
         </div>
-        <div className="demo-box">
-          <Steps current={2} type="bottom-desc">
+        <div className="demo-box s3">
+          <Steps current={this.state.s3} type="bottom-desc" onChange={(v)=>{this.onChange('s3', v)}}>
             <Step key={0} title={'步骤一'} description="描述文案" editable />
             <Step key={1} title={'步骤二'} description="描述文案" />
             <Step key={2} title={'步骤三'} description="描述文案" />
             <Step key={3} title={'步骤四'} description="描述文案" />
           </Steps>
         </div>
-        <div className="demo-box">
-          <Steps current={2} showIcon={false}>
+        <div className="demo-box s4">
+          <Steps current={this.state.s4} showIcon={false} onChange={(v)=>{this.onChange('s4', v)}}>
             <Step key={0} title={'步骤一'} editable />
             <Step key={1} title={'步骤二'} />
             <Step key={2} title={'步骤三'} />
@@ -131,8 +143,8 @@ class Demo extends React.Component {
         </div>
         <div className="vertical-demo">
           <h3>可返回编辑</h3>
-          <div className="demo-box">
-            <Steps current={2} direction="vertical">
+          <div className="demo-box s5">
+            <Steps current={this.state.s5} direction="vertical" onChange={(v)=>{this.onChange('s5', v)}}>
               <Step key={0} title={'步骤一'} description="描述文字" editable />
               <Step key={1} title={'步骤二'} description="描述文字" />
               <Step key={2} title={'步骤三'} description="描述文字" />
@@ -164,8 +176,8 @@ class Demo extends React.Component {
         </div>
         <div className="vertical-demo">
           <h3>可返回编辑（迷你版）</h3>
-          <div className="demo-box">
-            <Steps current={2} showIcon={false} direction="vertical">
+          <div className="demo-box s6">
+            <Steps current={this.state.s6} showIcon={false} direction="vertical" onChange={(v)=>{this.onChange('s6', v)}}>
               <Step key={0} title={'步骤一'} description="描述文字" editable />
               <Step key={1} title={'步骤二'} description="描述文字" />
               <Step key={2} title={'步骤三'} description="描述文字" />

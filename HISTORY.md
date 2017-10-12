@@ -1,5 +1,8 @@
 # History
 
+## 2.1.3
+
+`FIXED` new type 'arrow-bar' failed to apply onChange event
 ## 2.1.2
 
 `FIXED` style fixes: vertical mini step spacing; current step title font weight

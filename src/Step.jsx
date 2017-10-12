@@ -62,7 +62,7 @@ class Step extends Component {
       }
 
       return (<div className={arrowbarStepCls}>
-        <div className={`${prefixCls}-title`}>
+        <div className={`${prefixCls}-title`} onClick={this.onIconClick}>
           <span>{title}</span>
           {descJsx}
         </div>
