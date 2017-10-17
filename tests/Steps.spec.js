@@ -1,8 +1,11 @@
 import expect from 'expect.js';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
 import React from 'react';
 import assign from 'object-assign';
 import Steps from '../src';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 const generateSteps = (options = {}) => {
   const opts = assign({}, {
@@ -104,7 +107,6 @@ describe('Steps', () => {
   describe('Render Vertically', () => {
     it('render result should be correct with vertical param', () => {
       const i = generateSteps({ direction: 'vertical' });
-      const html = i.html();
       expect(i.find('.kuma-step-vertical').length).to.be(1);
     });
   });
@@ -112,7 +114,6 @@ describe('Steps', () => {
   describe('Render with Detail', () => {
     it('render result should be correct with vertical param', () => {
       const i = generateSteps({ showDetail: true });
-      const html = i.html();
       i.instance().setState({ current: 2 });
       expect(i.find('.kuma-step-vertical').length).to.be(0);
     });

@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from 'uxcore-icon';
 import Tooltip from 'uxcore-tooltip';
 
-class Step extends Component {
+class Step extends React.Component {
   constructor(props) {
     super(props);
 
