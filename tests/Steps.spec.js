@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-filename-extension */
+
 import expect from 'expect.js';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
@@ -24,10 +26,10 @@ const generateSteps = (options = {}) => {
       {...opts}
     >
       {items}
-    </Steps>
+    </Steps>,
   );
   return wrapper;
-}
+};
 
 describe('Steps', () => {
   describe('Initial Instance', () => {

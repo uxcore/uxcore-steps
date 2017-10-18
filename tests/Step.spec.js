@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-filename-extension */
+
 import expect from 'expect.js';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
@@ -7,7 +9,6 @@ import Step from '../src/Step';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-/* eslint-disable */
 const generateStep = (status, title, desc, icon, options, type = 'default') => {
   const wrapper = mount(
     <Step
@@ -21,11 +22,10 @@ const generateStep = (status, title, desc, icon, options, type = 'default') => {
       maxDescriptionWidth={200}
       stepNumber={2}
       {...options}
-    />
+    />,
   );
   return wrapper;
 };
-/* eslint-enable */
 
 describe('Step', () => {
   describe('status prop', () => {

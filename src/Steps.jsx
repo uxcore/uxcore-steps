@@ -27,10 +27,6 @@ class Steps extends React.Component {
     }
 
     const $dom = this.root;
-    if (!$dom || !$dom.children) {
-      return;
-    }
-
     const len = $dom.children.length;
     this.itemsWidth = new Array(len);
 
@@ -92,10 +88,6 @@ class Steps extends React.Component {
 
     this.resize();
     const $dom = this.root;
-    if (!$dom || !$dom.children) {
-      return;
-    }
-
     const len = $dom.children.length - 1;
 
     /*
@@ -122,11 +114,11 @@ class Steps extends React.Component {
   }
 
   resize() {
-    this.fixLastDetailHeight();
-
     if (!this.root) {
       return;
     }
+
+    this.fixLastDetailHeight();
 
     const w = Math.floor(this.root.offsetWidth);
     if (this.previousStepsWidth === w) {
@@ -146,10 +138,6 @@ class Steps extends React.Component {
     }
 
     const $dom = this.root;
-    if (!$dom || !$dom.children) {
-      return;
-    }
-    
     const len = $dom.children.length - 1;
     const $domLastDetail = $dom.children[len];
     if (this.props.currentDetail === len && $dom.offsetHeight <= $domLastDetail.offsetHeight) {
