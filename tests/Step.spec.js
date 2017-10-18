@@ -7,6 +7,7 @@ import Step from '../src/Step';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+/* eslint-disable */
 const generateStep = (status, title, desc, icon, options, type = 'default') => {
   const wrapper = mount(
     <Step
@@ -24,6 +25,7 @@ const generateStep = (status, title, desc, icon, options, type = 'default') => {
   );
   return wrapper;
 };
+/* eslint-enable */
 
 describe('Step', () => {
   describe('status prop', () => {
