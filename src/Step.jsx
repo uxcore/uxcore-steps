@@ -166,6 +166,7 @@ Step.propTypes = {
 Step.defaultProps = {
   hasDetail: false,
   editable: false,
+  onChange: () => {},
 };
 
 Step.displayName = 'Step';

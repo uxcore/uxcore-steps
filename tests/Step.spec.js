@@ -105,6 +105,20 @@ describe('Step', () => {
     expect(w.find('.kuma-step-editable').length).to.be(1);
   });
 
+  it('should invoke onChange', () => {
+    let g;
+    const w = generateStep('finish', 'test', 'descp', 'dog', {
+      stepLast: true,
+      editable: true,
+      onChange: (v) => {
+        g = v;
+      },
+    });
+    const i = w.instance();
+    i.onIconClick.call(i);
+    expect(g).to.be(1);
+  });
+
   it('should has editable style for type arrow-bar', () => {
     const w = generateStep('finish', 'test', 'descp', 'dog', {
       stepLast: true,
