@@ -1,5 +1,9 @@
 # History
 
+## 2.1.4
+
+`CHANGED` update react to ver 15.x
+
 ## 2.1.3
 
 `FIXED` new type 'arrow-bar' failed to apply onChange event
