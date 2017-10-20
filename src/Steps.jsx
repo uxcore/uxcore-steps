@@ -6,10 +6,12 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Steps extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       init: false,
       tailWidth: 0,
@@ -112,6 +114,10 @@ class Steps extends React.Component {
   }
 
   resize() {
+    if (!this.root) {
+      return;
+    }
+
     this.fixLastDetailHeight();
 
     const w = Math.floor(this.root.offsetWidth);
@@ -251,18 +257,18 @@ Steps.defaultProps = {
 };
 
 Steps.propTypes = {
-  prefixCls: React.PropTypes.string,
-  className: React.PropTypes.string,
-  iconPrefix: React.PropTypes.string,
-  maxDescriptionWidth: React.PropTypes.number,
-  current: React.PropTypes.number,
-  direction: React.PropTypes.string,
-  showIcon: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
-  showDetail: React.PropTypes.bool,
-  currentDetail: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  children: React.PropTypes.any,
+  prefixCls: PropTypes.string,
+  className: PropTypes.string,
+  iconPrefix: PropTypes.string,
+  maxDescriptionWidth: PropTypes.number,
+  current: PropTypes.number,
+  direction: PropTypes.string,
+  showIcon: PropTypes.bool,
+  type: PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
+  showDetail: PropTypes.bool,
+  currentDetail: PropTypes.number,
+  onChange: PropTypes.func,
+  children: PropTypes.any,
 };
 
 Steps.displayName = 'Steps';
