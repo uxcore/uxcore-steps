@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import Icon from 'uxcore-icon';
 import Steps, { Step } from '../src';
 
 class Demo extends React.Component {
@@ -71,6 +72,14 @@ class Demo extends React.Component {
             <Step key={0} title={'步骤一'} editable />
             <Step key={1} title={'步骤二'} status={this.state.s1 === 1 ? 'error' : ''} />
             <Step key={2} title={'步骤三'} description="描述文案" />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={2} type="bottom-desc">
+            <Step key={0} title={'步骤一'} icon={<Icon name="tupian" />} />
+            <Step key={1} title={'步骤二'} icon={<Icon name="shezhi" />} />
+            <Step key={2} title={'步骤三'} icon={<Icon name="youxiang" />} />
+            <Step key={3} title={'步骤四'} icon={<Icon name="riqiqujian" />} />
           </Steps>
         </div>
         <div className="demo-box">
@@ -252,7 +261,7 @@ class Demo extends React.Component {
             <Step key={3} title={'步骤四'} description="这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案这里是说明文案" />
           </Steps>
         </div>
-        
+
       </div>
     );
   }

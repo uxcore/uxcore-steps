@@ -95,6 +95,14 @@ describe('Step', () => {
       expect(w.find('.kuma-icon').length).to.be(1);
       expect(w.find('.kuma-icon-dog').length).to.be(1);
     });
+    it('should display the custom jsx icon', () => {
+      const jsxIcon = <i className="custom-jsx-icon" />;
+      const w = generateStep('process', 'test', 'descp', jsxIcon, {
+        stepLast: true,
+        showIcon: true,
+      });
+      expect(w.find('i.custom-jsx-icon').length).to.be(1);
+    });
   });
 
   it('should has editable style', () => {

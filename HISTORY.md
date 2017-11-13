@@ -1,5 +1,9 @@
 # History
 
+## 2.1.5
+
+`ADDED` icon prop for Step support uxcore-icon
+
 ## 2.1.4
 
 `CHANGED` update react to ver 15.x
