@@ -96,7 +96,11 @@ class Step extends React.Component {
       iconJsx = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
       if (icon) {
         stepCls += ` ${prefixCls}-custom`;
-        iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${icon}`} />;
+        if (typeof icon === 'string') {
+          iconJsx = <span className={`${prefixCls}-icon ${iconPrefix}icon ${iconPrefix}icon-${icon}`} />;
+        } else {
+          iconJsx = <span className={`${prefixCls}-icon ${prefixCls}-uxicon`}>{icon}</span>;
+        }
       } else if (status === 'finish') {
         iconJsx = <span className={`${prefixCls}-icon`}><Icon name="option-yixuan-gou" /></span>;
       } else if (status === 'error') {
