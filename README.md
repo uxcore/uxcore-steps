@@ -54,7 +54,7 @@ http://uxcore.github.io/uxcore/components/steps/
 |status | 可选参数，指定状态。当不配置该属性时，会使用父Steps元素的current来自动指定状态。 | string | wait, process, finish, error | wait |
 |title | 必要参数，标题。 | string/jsx | 无 | 无 |
 |description | 可选参数，步骤的详情描述。 | string/jsx | 无 | 空 |
-|icon | 可选参数，步骤的Icon。如果不指定，则使用默认的样式。 | string/jsx | 无 | 空 |
+|icon | 可选参数，步骤的Icon。如果传 string，则为自定义样式方式；如果传 jsx，请传 uxcore-icon。 | string/jsx | 无 | 空 |
 |editable | 可选参数，该步骤的内容是否可以返回编辑。 | boolean | true/false | false |
 
 如果指定 editable 为 true，则该节点样式为可点击，使用需要配合传入 onChange 回调函数，回调函数将通过参数回传用户当前点击步骤的 key，可以通过 key 值来调整 current 或者需要显示的内容。
