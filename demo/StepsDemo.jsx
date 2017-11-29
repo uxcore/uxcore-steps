@@ -20,7 +20,7 @@ class Demo extends React.Component {
       s2: 1,
       s3: 2,
       s4: 2,
-      s5: 2,
+      s5: 4,
       s6: 2,
     };
   }
@@ -36,6 +36,10 @@ class Demo extends React.Component {
   }
 
   render() {
+    const jsxStepTitle = <span style={{ color: '#f60' }}>JSX步骤二</span>;
+    const jsxStepDesc = (<div style={{ color: '#999' }}>
+      <a href="javascript:alert('编辑');">编辑</a> 这是一个复杂的JSX描述信息
+    </div>);
     return (
       <div className="uxcore-steps-demo">
         <h3>横向步骤条(横向基础)</h3>
@@ -138,6 +142,14 @@ class Demo extends React.Component {
             <Step key={3} title={'步骤四'} />
           </Steps>
         </div>
+        <div className="demo-box s5">
+          <Steps current={this.state.s5} type="bottom-desc" onChange={(v)=>{this.onChange('s5', v)}}>
+            <Step key={0} title={'步骤一'} editable />
+            <Step key={1} title={jsxStepTitle} description={jsxStepDesc} editable />
+            <Step key={2} title={'步骤三'} editable />
+            <Step key={3} title={'步骤四'} editable />
+          </Steps>
+        </div>
         <h2>纵向步骤条</h2>
         <div className="vertical-demo">
           <h3>不可返回编辑</h3>
@@ -152,8 +164,8 @@ class Demo extends React.Component {
         </div>
         <div className="vertical-demo">
           <h3>可返回编辑</h3>
-          <div className="demo-box s5">
-            <Steps current={this.state.s5} direction="vertical" onChange={(v)=>{this.onChange('s5', v)}}>
+          <div className="demo-box s6">
+            <Steps current={this.state.s6} direction="vertical" onChange={(v)=>{this.onChange('s6', v)}}>
               <Step key={0} title={'步骤一'} description="描述文字" editable />
               <Step key={1} title={'步骤二'} description="描述文字" />
               <Step key={2} title={'步骤三'} description="描述文字" />

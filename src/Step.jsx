@@ -137,6 +137,8 @@ class Step extends React.Component {
       </div>);
     }
 
+    const titleTitle = (typeof title === 'string') ? title : '';
+
     return (
       <div className={`${stepCls}`} style={stepStyle}>
         {tailJsx}
@@ -145,7 +147,7 @@ class Step extends React.Component {
         </div>
         <div className={`${prefixCls}-main`} style={{ maxWidth: maxDescriptionWidth }}>
           <div className={`${prefixCls}-detail-arrow`} style={{ display: (showDetail ? 'block' : 'none') }} />
-          <div className={`${prefixCls}-title`} title={title}>{title}</div>
+          <div className={`${prefixCls}-title`} title={titleTitle}>{title}</div>
           {descriptionDesc}
         </div>
         <div className={detailCls}>
@@ -171,6 +173,7 @@ Step.defaultProps = {
   hasDetail: false,
   editable: false,
   onChange: () => {},
+  stepNumber: 0,
 };
 
 Step.displayName = 'Step';

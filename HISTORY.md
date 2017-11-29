@@ -1,5 +1,9 @@
 # History
 
+## 2.1.6
+
+`FIXED` set title attribute while the type is string, not jsx, see #17
+
 ## 2.1.5
 
 `ADDED` icon prop for Step support uxcore-icon
