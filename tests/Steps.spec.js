@@ -2,7 +2,7 @@
 
 import expect from 'expect.js';
 import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import assign from 'object-assign';
 import Steps from '../src';
@@ -16,7 +16,13 @@ const generateSteps = (options = {}) => {
     showIcon: true,
     type: 'default', // default title-on-top or long-desc
   }, options || {});
-  const items = ['hello', 'hi'].map(i => <Steps.Step key={i} title={i} description={i} />);
+  const items = ['hello', 'hi', 'wola'].map((i) => {
+    if (i === 'wola') {
+      return <Steps.Step key={i} title={i} />;
+    }
+
+    return <Steps.Step key={i} title={i} description={i} />;
+  });
   const wrapper = mount(
     <Steps
       prefixCls="kuma-step"
@@ -38,9 +44,6 @@ describe('Steps', () => {
       i.render();
       expect(i.state.init).to.be(false);
       expect(i.state.tailWidth).to.be(0);
-      i.componentWillReceiveProps(assign({}, i.props, {
-        children: [<div>Hello</div>],
-      }));
       setTimeout(() => {
         expect(i.props.children).to.be.an('array');
         done();
@@ -76,7 +79,7 @@ describe('Steps', () => {
 
   describe('Render correct with current 2', () => {
     it('render result should be correct', () => {
-      const i = generateSteps({ current: 2 });
+      const i = generateSteps({ current: '2' });
       const html = i.html();
       expect(html).to.contain('kuma-step');
     });
