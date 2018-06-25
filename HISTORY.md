@@ -1,5 +1,9 @@
 # History
 
+## 2.1.7
+
+`CHANGED` upgrade react to v16  
+
 ## 2.1.6
 
 `FIXED` set title attribute while the type is string, not jsx, see #17
