@@ -9,6 +9,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Steps extends React.Component {
+  static displayName = 'Steps';
+
+  static defaultProps = {
+    prefixCls: 'kuma-step',
+    className: '',
+    iconPrefix: '',
+    maxDescriptionWidth: 100,
+    current: 0,
+    direction: '',
+    showIcon: true,
+    type: 'default',
+    showDetail: false,
+    currentDetail: 0,
+    onChange: () => {
+    },
+    children: [],
+  };
+
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+    iconPrefix: PropTypes.string,
+    maxDescriptionWidth: PropTypes.number,
+    current: PropTypes.number,
+    direction: PropTypes.string,
+    showIcon: PropTypes.bool,
+    type: PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
+    showDetail: PropTypes.bool,
+    currentDetail: PropTypes.number,
+    onChange: PropTypes.func,
+    children: PropTypes.any,
+  };
+
   constructor(props) {
     super(props);
 
@@ -42,7 +75,7 @@ class Steps extends React.Component {
      * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
      * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
      */
-    $dom.children[len-1].style.position = 'absolute';
+    $dom.children[len - 1].style.position = 'absolute';
 
     this.fixLastDetailHeight();
 
@@ -64,25 +97,8 @@ class Steps extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.direction === 'vertical') {
-      return;
-    }
-
-    if (nextProps.children.length !== this.props.children.length) {
-      const len = nextProps.children.length;
-      this.itemsWidth = new Array(len);
-
-      for (let i = 0; i <= len; i++) {
-        this.itemsWidth[i] = nextProps.maxDescriptionWidth;
-      }
-
-      this.update(nextProps);
-    }
-  }
-
   componentDidUpdate() {
-    if (this.props.type === 'arrow-bar'){
+    if (this.props.type === 'arrow-bar') {
       return;
     }
 
@@ -91,9 +107,9 @@ class Steps extends React.Component {
     const len = $dom.children.length - 1;
 
     /*
-     * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
-     * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
-     */
+      * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
+      * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
+      */
     for (let i = 0; i <= len; i++) {
       $dom.children[i].style.position = 'relative';
     }
@@ -133,7 +149,7 @@ class Steps extends React.Component {
    * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
    */
   fixLastDetailHeight() {
-    if (this.props.type === 'arrow-bar'){
+    if (this.props.type === 'arrow-bar') {
       return;
     }
 
@@ -147,8 +163,8 @@ class Steps extends React.Component {
     }
   }
 
-  update(props = this.props) {
-    const len = props.children.length - 1;
+  update() {
+    const len = this.props.children.length - 1;
     const tw = this.itemsWidth.reduce((prev, w) =>
       prev + w
       , 0);
@@ -218,7 +234,7 @@ class Steps extends React.Component {
             showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
             detailContentFixStyle: {
               marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx)
-                ? -(iws[idx] + this.state.tailWidth) * idx - 41
+                ? (-(iws[idx] + this.state.tailWidth) * idx) - 41
                 : 0,
               width: this.previousStepsWidth,
             },
@@ -234,43 +250,12 @@ class Steps extends React.Component {
               np.status = 'wait';
             }
           }
+
           return React.cloneElement(ele, np);
         }, this)}
       </div>
     );
   }
 }
-
-Steps.defaultProps = {
-  prefixCls: 'kuma-step',
-  className: '',
-  iconPrefix: '',
-  maxDescriptionWidth: 100,
-  current: 0,
-  direction: '',
-  showIcon: true,
-  type: 'default',
-  showDetail: false,
-  currentDetail: 0,
-  onChange: () => {
-  },
-};
-
-Steps.propTypes = {
-  prefixCls: PropTypes.string,
-  className: PropTypes.string,
-  iconPrefix: PropTypes.string,
-  maxDescriptionWidth: PropTypes.number,
-  current: PropTypes.number,
-  direction: PropTypes.string,
-  showIcon: PropTypes.bool,
-  type: PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
-  showDetail: PropTypes.bool,
-  currentDetail: PropTypes.number,
-  onChange: PropTypes.func,
-  children: PropTypes.any,
-};
-
-Steps.displayName = 'Steps';
 
 export default Steps;

@@ -4,6 +4,60 @@ import Icon from 'uxcore-icon';
 import Tooltip from 'uxcore-tooltip';
 
 class Step extends React.Component {
+  static displayName = 'Step';
+
+  static propTypes = {
+    hasDetail: PropTypes.bool,
+    editable: PropTypes.bool,
+    onChange: PropTypes.func,
+    stepNumber: PropTypes.number,
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+    iconPrefix: PropTypes.string,
+    maxDescriptionWidth: PropTypes.number,
+    current: PropTypes.number,
+    direction: PropTypes.string,
+    showIcon: PropTypes.bool,
+    icon: PropTypes.any,
+    type: PropTypes.oneOf(['default', 'title-on-top', 'long-desc', 'bottom-desc', 'arrow-bar']),
+    showDetail: PropTypes.bool,
+    currentDetail: PropTypes.number,
+    stepLast: PropTypes.bool,
+    fixStyle: PropTypes.object,
+    tailWidth: PropTypes.node,
+    title: PropTypes.node,
+    description: PropTypes.node,
+    detailContentFixStyle: PropTypes.object,
+    children: PropTypes.any,
+    status: PropTypes.string,
+  };
+
+  static defaultProps = {
+    hasDetail: false,
+    editable: false,
+    onChange: () => {},
+    stepNumber: 0,
+    prefixCls: 'kuma-step',
+    className: '',
+    iconPrefix: '',
+    maxDescriptionWidth: 100,
+    current: 0,
+    direction: '',
+    showIcon: true,
+    icon: '',
+    type: 'default',
+    showDetail: false,
+    currentDetail: 0,
+    stepLast: false,
+    fixStyle: null,
+    tailWidth: 0,
+    title: '',
+    description: '',
+    detailContentFixStyle: {},
+    children: [],
+    status: '',
+  };
+
   constructor(props) {
     super(props);
 
@@ -36,8 +90,9 @@ class Step extends React.Component {
       detailContentFixStyle,
       editable,
       children,
-      status = 'wait',
     } = this.props;
+
+    const status = this.props.status || 'wait';
 
     // arrow-bar 是一种完全不一样的类型，之前的逻辑完全用不到，提前返回
     if (type === 'arrow-bar') {
@@ -161,21 +216,5 @@ class Step extends React.Component {
     );
   }
 }
-
-Step.propTypes = {
-  hasDetail: PropTypes.bool,
-  editable: PropTypes.bool,
-  onChange: PropTypes.func,
-  stepNumber: PropTypes.number,
-};
-
-Step.defaultProps = {
-  hasDetail: false,
-  editable: false,
-  onChange: () => {},
-  stepNumber: 0,
-};
-
-Step.displayName = 'Step';
 
 export default Step;

@@ -22,17 +22,26 @@ class Demo extends React.Component {
       s4: 2,
       s5: 4,
       s6: 2,
+      steps: ['a', 'b', 'c', 'd'],
     };
-  }
 
-  cb(v) {
-    this.setState({ c: v });
+    this.changeSteps = this.changeSteps.bind(this);
   }
 
   onChange(k, v) {
     const st = this.state;
     st[k] = v;
     this.setState(st);
+  }
+
+  cb(v) {
+    this.setState({ c: v });
+  }
+
+  changeSteps() {
+    this.setState({
+      steps: ['a', 'b', 'c'],
+    });
   }
 
   render() {
@@ -43,11 +52,10 @@ class Demo extends React.Component {
     return (
       <div className="uxcore-steps-demo">
         <h3>横向步骤条(横向基础)</h3>
+        <button onClick={this.changeSteps}>更新步骤数量</button>
         <div className="demo-box">
           <Steps current={0} type="arrow-bar">
-            <Step key={0} title={'步骤一'} />
-            <Step key={1} title={'步骤二'} />
-            <Step key={2} title={'步骤二'} />
+            {this.state.steps.map((step, idx) => <Step key={idx} title={`步骤${step}`} />)}
           </Steps>
         </div>
         <div className="demo-box">
