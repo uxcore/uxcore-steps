@@ -1,5 +1,9 @@
 # History
 
+## 2.1.8
+
+`CHANGED` add usei prop while using uxcore-icon  
+
 ## 2.1.7
 
 `CHANGED` upgrade react to v16  
