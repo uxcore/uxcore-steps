@@ -57,4 +57,5 @@ http://uxcore.github.io/uxcore/components/steps/
 |icon | 可选参数，步骤的Icon。如果传 string，则为自定义样式方式；如果传 jsx，请传 uxcore-icon。 | string/jsx | 无 | 空 |
 |editable | 可选参数，该步骤的内容是否可以返回编辑。 | boolean | true/false | false |
 
-如果指定 editable 为 true，则该节点样式为可点击，使用需要配合传入 onChange 回调函数，回调函数将通过参数回传用户当前点击步骤的 key，可以通过 key 值来调整 current 或者需要显示的内容。
+- 在 React V16 之后，如果 icon 传入 jsx 并使用的是 uxcore-icon 时，请增加 `usei` 属性，否则 React 会抛出 `The tag <icon> is unrecognized in this browser` 的警告信息
+- 如果指定 editable 为 true，则该节点样式为可点击，使用需要配合传入 onChange 回调函数，回调函数将通过参数回传用户当前点击步骤的 key，可以通过 key 值来调整 current 或者需要显示的内容。

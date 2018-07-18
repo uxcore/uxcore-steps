@@ -88,10 +88,10 @@ class Demo extends React.Component {
         </div>
         <div className="demo-box">
           <Steps current={2} type="bottom-desc">
-            <Step key={0} title={'步骤一'} icon={<Icon name="tupian" />} />
-            <Step key={1} title={'步骤二'} icon={<Icon name="shezhi" />} />
-            <Step key={2} title={'步骤三'} icon={<Icon name="youxiang" />} />
-            <Step key={3} title={'步骤四'} icon={<Icon name="riqiqujian" />} />
+            <Step key={0} title={'步骤一'} icon={<Icon usei name="tupian" />} />
+            <Step key={1} title={'步骤二'} icon={<Icon usei name="shezhi" />} />
+            <Step key={2} title={'步骤三'} icon={<Icon usei name="youxiang" />} />
+            <Step key={3} title={'步骤四'} icon={<Icon usei name="riqiqujian" />} />
           </Steps>
         </div>
         <div className="demo-box">

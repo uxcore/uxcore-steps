@@ -113,7 +113,7 @@ class Step extends React.Component {
       if (description) {
         const overlay = <div>{description}</div>;
         descJsx = (<Tooltip overlay={overlay} placement="bottom">
-          <Icon name="xinxitishicopy" className="step-info" />
+          <Icon usei name="xinxitishicopy" className="step-info" />
         </Tooltip>);
       }
 
@@ -157,9 +157,9 @@ class Step extends React.Component {
           iconJsx = <span className={`${prefixCls}-icon ${prefixCls}-uxicon`}>{icon}</span>;
         }
       } else if (status === 'finish') {
-        iconJsx = <span className={`${prefixCls}-icon`}><Icon name="option-yixuan-gou" /></span>;
+        iconJsx = <span className={`${prefixCls}-icon`}><Icon usei name="option-yixuan-gou" /></span>;
       } else if (status === 'error') {
-        iconJsx = <span className={`${prefixCls}-icon`}><Icon name="biaoqian-qingchu" /></span>;
+        iconJsx = <span className={`${prefixCls}-icon`}><Icon usei name="biaoqian-qingchu" /></span>;
       }
     }
 
