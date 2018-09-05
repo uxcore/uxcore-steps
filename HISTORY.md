@@ -1,5 +1,9 @@
 # History
 
+## 2.1.9
+
+`CHANGED` support js style export
+
 ## 2.1.8
 
 `CHANGED` add usei prop while using uxcore-icon  

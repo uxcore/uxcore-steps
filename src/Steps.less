@@ -6,15 +6,16 @@
  * All rights reserved.
  */
 
-@__step-prefix-cls: kuma-step;
-@__step-normal-icon-size: 24px;
-@__step_icon_tail_spacing: 4px;
-@__step_font_size: 12px;
-@__step-min-icon-size: 10px;
-@__step_arrow_bar_height: 24px;
-.@{__step-prefix-cls} {
+@__stepsPrefixCls: kuma-step;
+@__stepsNormalIconSize: 24px;
+@__stepsIconTailSpacing: 4px;
+@__stepsFontSize: 12px;
+@__stepsMinIconSize: 10px;
+@__stepsArrowBarHeight: 24px;
+
+.@{__stepsPrefixCls} {
   margin-left: 30px;
-  .@{__step-prefix-cls}-item {
+  .@{__stepsPrefixCls}-item {
     position: relative;
     display: inline-block;
     min-height: 60px;
@@ -22,8 +23,8 @@
     margin-bottom: 25px;
     vertical-align: top;
 
-    &.@{__step-prefix-cls}-editable {
-      .@{__step-prefix-cls}-icon {
+    &.@{__stepsPrefixCls}-editable {
+      .@{__stepsPrefixCls}-icon {
         cursor: pointer;
         transition: all .2s ease-in-out;
 
@@ -33,8 +34,8 @@
       }
     }
 
-    .@{__step-prefix-cls}-main {
-      .@{__step-prefix-cls}-detail-arrow {
+    .@{__stepsPrefixCls}-main {
+      .@{__stepsPrefixCls}-detail-arrow {
         position: absolute;
         top: 45px;
         font-family: kuma;
@@ -55,16 +56,16 @@
       }
     }
   }
-  .@{__step-prefix-cls}-item-last {
-    .@{__step-prefix-cls}-title {
+  .@{__stepsPrefixCls}-item-last {
+    .@{__stepsPrefixCls}-title {
       padding-right: 0;
     }
   }
-  .@{__step-prefix-cls}-tail {
+  .@{__stepsPrefixCls}-tail {
     position: absolute;
     left: 0;
-    top: @__step-normal-icon-size / 2 + 7;
-    padding: 0 @__step_icon_tail_spacing 0 @__step-normal-icon-size + @__step_icon_tail_spacing;
+    top: @__stepsNormalIconSize / 2 + 7;
+    padding: 0 @__stepsIconTailSpacing 0 @__stepsNormalIconSize + @__stepsIconTailSpacing;
     width: 100%;
     >i {
       display: block;
@@ -73,51 +74,51 @@
       background-color: @normal-alpha-7;
     }
   }
-  .@{__step-prefix-cls}-head {
+  .@{__stepsPrefixCls}-head {
     position: absolute;
     left: 0;
     top: 8px;
-    padding-right: @__step_icon_tail_spacing;
+    padding-right: @__stepsIconTailSpacing;
     z-index: 1;
 
-    .@{__step-prefix-cls}-icon {
+    .@{__stepsPrefixCls}-icon {
       display: inline-block;
-      width: @__step-normal-icon-size;
-      height: @__step-normal-icon-size;
-      border-radius: @__step-normal-icon-size / 2;
+      width: @__stepsNormalIconSize;
+      height: @__stepsNormalIconSize;
+      border-radius: @__stepsNormalIconSize / 2;
       border: 2px solid @brand-success;
       text-align: center;
-      line-height: @__step-normal-icon-size - 4;
-      font-size: @__step_font_size;
+      line-height: @__stepsNormalIconSize - 4;
+      font-size: @__stepsFontSize;
       vertical-align: middle;
     }
 
-    .@{__step-prefix-cls}-uxicon {
+    .@{__stepsPrefixCls}-uxicon {
       border-width: 1px;
-      line-height: @__step-normal-icon-size - 2;
+      line-height: @__stepsNormalIconSize - 2;
     }
   }
-  .@{__step-prefix-cls}-main {
+  .@{__stepsPrefixCls}-main {
     color: @text-secondary-color;
-    .@{__step-prefix-cls}-title {
+    .@{__stepsPrefixCls}-title {
       white-space: nowrap;
       color: @dark-alpha-2;
     }
-    .@{__step-prefix-cls}-description {
+    .@{__stepsPrefixCls}-description {
       color: @dark-alpha-3;
     }
   }
 
   // 默认样式
-  &.@{__step-prefix-cls}-type-default {
-    .@{__step-prefix-cls}-item {
-      &.@{__step-prefix-cls}-no-desc {
+  &.@{__stepsPrefixCls}-type-default {
+    .@{__stepsPrefixCls}-item {
+      &.@{__stepsPrefixCls}-no-desc {
         margin-top: 0;
       }
     }
-    .@{__step-prefix-cls}-main {
+    .@{__stepsPrefixCls}-main {
       position: absolute;
-      .@{__step-prefix-cls}-title {
+      .@{__stepsPrefixCls}-title {
         position: relative;
         left: 12px;
         display: inline-block;
@@ -129,7 +130,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
       }
-      .@{__step-prefix-cls}-description {
+      .@{__stepsPrefixCls}-description {
         position: absolute;
         left: 12px;
         display: inline-block;
@@ -151,7 +152,7 @@
         border: 1px solid @normal-alpha-6;
         border-radius: @global-border-radius;
       }
-      .@{__step-prefix-cls}-description-arrow {
+      .@{__stepsPrefixCls}-description-arrow {
         position: absolute;
         bottom: 53px;
         left: 5px;
@@ -186,13 +187,13 @@
   }
 
   // title在顶部的
-  &.@{__step-prefix-cls}-type-title-on-top {
-    .@{__step-prefix-cls}-item {
+  &.@{__stepsPrefixCls}-type-title-on-top {
+    .@{__stepsPrefixCls}-item {
       margin-top: 28px;
     }
-    .@{__step-prefix-cls}-main {
+    .@{__stepsPrefixCls}-main {
       position: absolute;
-      .@{__step-prefix-cls}-title {
+      .@{__stepsPrefixCls}-title {
         position: relative;
         left: 12px;
         top: -18px;
@@ -200,7 +201,7 @@
         margin-left: -50%;
         text-align: center;
       }
-      .@{__step-prefix-cls}-description {
+      .@{__stepsPrefixCls}-description {
         position: absolute;
         left: 12px;
         display: inline-block;
@@ -213,33 +214,33 @@
   }
 
   // 包含大量描述的
-  &.@{__step-prefix-cls}-type-long-desc {
-    .@{__step-prefix-cls}-item {
+  &.@{__stepsPrefixCls}-type-long-desc {
+    .@{__stepsPrefixCls}-item {
       margin-top: 8px;
     }
-    .@{__step-prefix-cls}-main {
-      padding: 10px @__step-normal-icon-size 0;
+    .@{__stepsPrefixCls}-main {
+      padding: 10px @__stepsNormalIconSize 0;
     }
-    .@{__step-prefix-cls}-title {
+    .@{__stepsPrefixCls}-title {
       position: relative;
       padding: 0 8px;
       display: inline-block;
       background-color: #fff;
     }
-    .@{__step-prefix-cls}-description {
+    .@{__stepsPrefixCls}-description {
       padding: 8px;
       min-width: 180px;
     }
   }
 
   // 新版步骤名和描述都在下方
-  &.@{__step-prefix-cls}-type-bottom-desc {
-    .@{__step-prefix-cls}-item {
+  &.@{__stepsPrefixCls}-type-bottom-desc {
+    .@{__stepsPrefixCls}-item {
       margin-top: 0;
     }
-    .@{__step-prefix-cls}-main {
+    .@{__stepsPrefixCls}-main {
       position: absolute;
-      .@{__step-prefix-cls}-title {
+      .@{__stepsPrefixCls}-title {
         position: relative;
         left: 12px;
         display: inline-block;
@@ -251,7 +252,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
       }
-      .@{__step-prefix-cls}-description {
+      .@{__stepsPrefixCls}-description {
         position: absolute;
         left: 12px;
         display: inline-block;
@@ -262,28 +263,28 @@
       }
     }
 
-    .@{__step-prefix-cls}-status-wait {
-      .@{__step-prefix-cls}-description {
+    .@{__stepsPrefixCls}-status-wait {
+      .@{__stepsPrefixCls}-description {
         color: @normal-alpha-5;
       }
     }
   }
 
   // 新版新增样式 arrow bar
-  &.@{__step-prefix-cls}-type-arrow-bar {
+  &.@{__stepsPrefixCls}-type-arrow-bar {
     display: flex;
     margin-left: 0 !important;
 
-    .@{__step-prefix-cls}-item-arrowbar {
+    .@{__stepsPrefixCls}-item-arrowbar {
       overflow: hidden;
       flex: 1;
-      height: @__step_arrow_bar_height;
+      height: @__stepsArrowBarHeight;
       margin-left: -12px;
       position: relative;
 
-      .@{__step-prefix-cls}-title {
-        height: @__step_arrow_bar_height;
-        line-height: @__step_arrow_bar_height;
+      .@{__stepsPrefixCls}-title {
+        height: @__stepsArrowBarHeight;
+        line-height: @__stepsArrowBarHeight;
         background-color: @brand-primary;
         padding-left: 12px;
         margin-right: 14px;
@@ -298,28 +299,28 @@
         }
       }
 
-      .@{__step-prefix-cls}-arrow-right{
+      .@{__stepsPrefixCls}-arrow-right{
         position: absolute;
         top: 0;
         right: 2px;
         z-index: 10;
         width: 0;
         height: 0;
-        border-top: @__step_arrow_bar_height / 2 solid transparent;
-        border-bottom: @__step_arrow_bar_height / 2 solid transparent;
-        border-left: @__step_arrow_bar_height / 2 solid @brand-primary;
+        border-top: @__stepsArrowBarHeight / 2 solid transparent;
+        border-bottom: @__stepsArrowBarHeight / 2 solid transparent;
+        border-left: @__stepsArrowBarHeight / 2 solid @brand-primary;
       }
 
-      .@{__step-prefix-cls}-arrow-right-bg{
+      .@{__stepsPrefixCls}-arrow-right-bg{
         position: absolute;
         top: 0;
         right: 0;
         z-index: 9;
         width: 0;
         height: 0;
-        border-top: @__step_arrow_bar_height / 2 solid transparent;
-        border-bottom: @__step_arrow_bar_height / 2 solid transparent;
-        border-left: @__step_arrow_bar_height / 2 solid #fff;
+        border-top: @__stepsArrowBarHeight / 2 solid transparent;
+        border-bottom: @__stepsArrowBarHeight / 2 solid transparent;
+        border-left: @__stepsArrowBarHeight / 2 solid #fff;
       }
 
       &:first-child {
@@ -327,7 +328,7 @@
         border-bottom-left-radius: 3px;
         margin-left: 0;
 
-        .@{__step-prefix-cls}-title {
+        .@{__stepsPrefixCls}-title {
           padding-left: 0;
         }
       }
@@ -336,44 +337,44 @@
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px;
 
-        .@{__step-prefix-cls}-title {
+        .@{__stepsPrefixCls}-title {
           margin-right: 0;
         }
       }
 
-      &.@{__step-prefix-cls}-status-wait {
-        .@{__step-prefix-cls}-title {
+      &.@{__stepsPrefixCls}-status-wait {
+        .@{__stepsPrefixCls}-title {
           color: @normal-alpha-4;
           background-color: @normal-alpha-8;
         }
 
-        .@{__step-prefix-cls}-arrow-right{
-          border-left: @__step_arrow_bar_height / 2 solid @normal-alpha-8;
+        .@{__stepsPrefixCls}-arrow-right{
+          border-left: @__stepsArrowBarHeight / 2 solid @normal-alpha-8;
         }
       }
 
-      &.@{__step-prefix-cls}-status-error {
-        .@{__step-prefix-cls}-title {
+      &.@{__stepsPrefixCls}-status-error {
+        .@{__stepsPrefixCls}-title {
           color: @brand-danger;
           background-color: @brand-danger-alpha-7;
         }
 
-        .@{__step-prefix-cls}-arrow-right{
-          border-left: @__step_arrow_bar_height / 2 solid @brand-danger-alpha-7;
+        .@{__stepsPrefixCls}-arrow-right{
+          border-left: @__stepsArrowBarHeight / 2 solid @brand-danger-alpha-7;
         }
       }
     }
 
-    .@{__step-prefix-cls}-editable {
+    .@{__stepsPrefixCls}-editable {
       &:hover {
         cursor: pointer;
 
-        .@{__step-prefix-cls}-title {
+        .@{__stepsPrefixCls}-title {
           background-color: @brand-primary-hover;
         }
 
-        .@{__step-prefix-cls}-arrow-right{
-          border-left: @__step_arrow_bar_height / 2 solid @brand-primary-hover;
+        .@{__stepsPrefixCls}-arrow-right{
+          border-left: @__stepsArrowBarHeight / 2 solid @brand-primary-hover;
         }
       }
     }
@@ -381,34 +382,34 @@
 
   // 不同状态
   // wait, process=current, finish, error
-  .@{__step-prefix-cls}-status-wait {
-    .@{__step-prefix-cls}-icon {
+  .@{__stepsPrefixCls}-status-wait {
+    .@{__stepsPrefixCls}-icon {
       background-color: @normal-alpha-9;
       border-color: @normal-alpha-6;
       color: @normal-alpha-6;
     }
-    .@{__step-prefix-cls}-title {
+    .@{__stepsPrefixCls}-title {
       color: @normal-alpha-5;
     }
   }
-  .@{__step-prefix-cls}-status-process {
-    .@{__step-prefix-cls}-icon {
+  .@{__stepsPrefixCls}-status-process {
+    .@{__stepsPrefixCls}-icon {
       background-color: @brand-success;
       color: #fff;
     }
-    .@{__step-prefix-cls}-title {
+    .@{__stepsPrefixCls}-title {
       color: @dark-alpha-2;
       font-weight: 700;
     }
   }
-  .@{__step-prefix-cls}-status-finish {
-    .@{__step-prefix-cls}-tail {
+  .@{__stepsPrefixCls}-status-finish {
+    .@{__stepsPrefixCls}-tail {
       i {
         background-color: @brand-success !important;
       }
     }
 
-    .@{__step-prefix-cls}-icon {
+    .@{__stepsPrefixCls}-icon {
       background-color: #fff;
       color: @brand-success;
 
@@ -420,35 +421,35 @@
       }
     }
   }
-  .@{__step-prefix-cls}-status-error {
-    .@{__step-prefix-cls}-title {
+  .@{__stepsPrefixCls}-status-error {
+    .@{__stepsPrefixCls}-title {
       color: @brand-danger;
       font-weight: 700;
     }
-    .@{__step-prefix-cls}-icon {
+    .@{__stepsPrefixCls}-icon {
       color: @brand-danger;
       border-color: @brand-danger;
     }
   }
 
   // 纵向
-  &.@{__step-prefix-cls}-vertical {
-    .@{__step-prefix-cls}-head {
+  &.@{__stepsPrefixCls}-vertical {
+    .@{__stepsPrefixCls}-head {
       top: 0;
       padding-right: 0;
-      padding-bottom: @__step_icon_tail_spacing;
+      padding-bottom: @__stepsIconTailSpacing;
       background-color: #fff;
     }
-    .@{__step-prefix-cls}-item {
+    .@{__stepsPrefixCls}-item {
       display: block;
       margin-top: 0;
       margin-bottom: 0;
       min-height: 110px;
     }
-    .@{__step-prefix-cls}-tail {
-      left: @__step-normal-icon-size / 2 - 1;
+    .@{__stepsPrefixCls}-tail {
+      left: @__stepsNormalIconSize / 2 - 1;
       top: 0;
-      padding: @__step-normal-icon-size 0 @__step_icon_tail_spacing 0;
+      padding: @__stepsNormalIconSize 0 @__stepsIconTailSpacing 0;
       width: 0;
       height: 100%;
       i {
@@ -457,60 +458,60 @@
         background-color: @basic-700;
       }
     }
-    .@{__step-prefix-cls}-main {
+    .@{__stepsPrefixCls}-main {
       padding: 2px 0 0 30px;
-      .@{__step-prefix-cls}-title {
+      .@{__stepsPrefixCls}-title {
         margin-left: 0;
       }
-      .@{__step-prefix-cls}-description {
+      .@{__stepsPrefixCls}-description {
         margin-top: 4px;
         text-indent: 0;
       }
     }
-    .@{__step-prefix-cls}-status-wait {
-      .@{__step-prefix-cls}-description {
+    .@{__stepsPrefixCls}-status-wait {
+      .@{__stepsPrefixCls}-description {
         color: @normal-alpha-5;
       }
     }
   }
 
   // 微小风格
-  .@{__step-prefix-cls}-small {
+  .@{__stepsPrefixCls}-small {
     margin-left: 20px;
-    .@{__step-prefix-cls}-head {
-      .@{__step-prefix-cls}-icon {
-        font-size: @__step_font_size;
+    .@{__stepsPrefixCls}-head {
+      .@{__stepsPrefixCls}-icon {
+        font-size: @__stepsFontSize;
       }
     }
-    .@{__step-prefix-cls}-tail {
-      top: @__step-min-icon-size / 2 + 7;
+    .@{__stepsPrefixCls}-tail {
+      top: @__stepsMinIconSize / 2 + 7;
     }
-    &.@{__step-prefix-cls}-vertical {
-      .@{__step-prefix-cls}-tail {
-        left: @__step-min-icon-size / 2 - 1;
+    &.@{__stepsPrefixCls}-vertical {
+      .@{__stepsPrefixCls}-tail {
+        left: @__stepsMinIconSize / 2 - 1;
         top: 0;
       }
     }
-    .@{__step-prefix-cls}-head {
-      .@{__step-prefix-cls}-icon {
-        width: @__step-min-icon-size;
-        height: @__step-min-icon-size;
-        border-radius: @__step-min-icon-size / 2;
-        line-height: @__step-min-icon-size - 4;
+    .@{__stepsPrefixCls}-head {
+      .@{__stepsPrefixCls}-icon {
+        width: @__stepsMinIconSize;
+        height: @__stepsMinIconSize;
+        border-radius: @__stepsMinIconSize / 2;
+        line-height: @__stepsMinIconSize - 4;
       }
     }
   }
 
   // 无图标风格
-  &.@{__step-prefix-cls}-noicon {
+  &.@{__stepsPrefixCls}-noicon {
     margin-left: 37px;
-    .@{__step-prefix-cls}-head {
+    .@{__stepsPrefixCls}-head {
       top: 10px;
       left: 0px;
-      .@{__step-prefix-cls}-icon {
-        width: @__step-min-icon-size;
-        height: @__step-min-icon-size;
-        border-radius: @__step-min-icon-size / 2;
+      .@{__stepsPrefixCls}-icon {
+        width: @__stepsMinIconSize;
+        height: @__stepsMinIconSize;
+        border-radius: @__stepsMinIconSize / 2;
         background-color: @brand-success;
 
         &:after {
@@ -518,68 +519,68 @@
         }
       }
     }
-    .@{__step-prefix-cls}-main {
-      .@{__step-prefix-cls}-title {
+    .@{__stepsPrefixCls}-main {
+      .@{__stepsPrefixCls}-title {
         margin-top: 32px;
         left: 5px;
       }
-      .@{__step-prefix-cls}-description {
+      .@{__stepsPrefixCls}-description {
         bottom: 46px;
       }
-      .@{__step-prefix-cls}-description-arrow {
+      .@{__stepsPrefixCls}-description-arrow {
         bottom: 39px;
         left: -2px;
       }
     }
-    .@{__step-prefix-cls}-tail {
-      padding: 0 @__step_icon_tail_spacing 0 @__step-min-icon-size + @__step_icon_tail_spacing;
+    .@{__stepsPrefixCls}-tail {
+      padding: 0 @__stepsIconTailSpacing 0 @__stepsMinIconSize + @__stepsIconTailSpacing;
     }
 
-    .@{__step-prefix-cls}-status-wait {
-      .@{__step-prefix-cls}-icon {
+    .@{__stepsPrefixCls}-status-wait {
+      .@{__stepsPrefixCls}-icon {
         background-color: @normal-alpha-9;
         border-color: @normal-alpha-6;
         border-width: 2px;
       }
     }
-    .@{__step-prefix-cls}-status-error {
-      .@{__step-prefix-cls}-icon {
+    .@{__stepsPrefixCls}-status-error {
+      .@{__stepsPrefixCls}-icon {
         background-color: @brand-danger;
         border-color: @brand-danger;
       }
     }
 
-    &.@{__step-prefix-cls}-vertical {
-      .@{__step-prefix-cls}-head {
+    &.@{__stepsPrefixCls}-vertical {
+      .@{__stepsPrefixCls}-head {
         top: -5px;
         left: 8px;
         padding-right: 0;
         padding-bottom: 0;
         background-color: #fff;
 
-        .@{__step-prefix-cls}-head-inner{
+        .@{__stepsPrefixCls}-head-inner{
           height: 18px;
           padding: 4px 0;
 
-          .@{__step-prefix-cls}-icon{
+          .@{__stepsPrefixCls}-icon{
             vertical-align: top;
           }
         }
       }
-      .@{__step-prefix-cls}-main {
-        .@{__step-prefix-cls}-title {
+      .@{__stepsPrefixCls}-main {
+        .@{__stepsPrefixCls}-title {
           margin-top: -5px;
         }
       }
-      .@{__step-prefix-cls}-tail {
+      .@{__stepsPrefixCls}-tail {
         padding: 10px 0 0 1px;
       }
     }
   }
 
   //包含详情的
-  .@{__step-prefix-cls}-detail {
-    >.@{__step-prefix-cls}-detail-con {
+  .@{__stepsPrefixCls}-detail {
+    >.@{__stepsPrefixCls}-detail-con {
       display: none;
       margin-top: 74px;
       width: 800px;
@@ -589,8 +590,8 @@
       border-radius: 3px;
     }
   }
-  .@{__step-prefix-cls}-detail.@{__step-prefix-cls}-detail-current {
-    >.@{__step-prefix-cls}-detail-con {
+  .@{__stepsPrefixCls}-detail.@{__stepsPrefixCls}-detail-current {
+    >.@{__stepsPrefixCls}-detail-con {
       display: block;
     }
   }
