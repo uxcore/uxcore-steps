@@ -54,30 +54,12 @@ class Steps extends React.Component {
   }
 
   componentDidMount() {
-    const { type, direction, maxDescriptionWidth } = this.props;
+    const { type, direction } = this.props;
     if (type === 'arrow-bar' || direction === 'vertical') {
       return;
     }
 
-    const $dom = this.root;
-    const len = $dom.children.length;
-    this.itemsWidth = new Array(len);
-
-    // FIXME: 没太看懂，既然值都一样，为什么还要用一个数组？
-    for (let i = 0; i < len; i++) {
-      this.itemsWidth[i] = maxDescriptionWidth;
-    }
-
-    this.previousStepsWidth = Math.floor($dom.offsetWidth);
     this.update();
-
-    /*
-     * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
-     * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
-     */
-    $dom.children[len - 1].style.position = 'absolute';
-
-    this.fixLastDetailHeight();
 
     /*
      * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
@@ -97,7 +79,12 @@ class Steps extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (this.props.children.length !== prevProps.children.length) {
+      this.update();
+      return;
+    }
+
     if (this.props.type === 'arrow-bar') {
       return;
     }
@@ -164,14 +151,27 @@ class Steps extends React.Component {
   }
 
   update() {
-    const len = this.props.children.length - 1;
+    const $dom = this.root;
+    const len = $dom.children.length;
+    this.itemsWidth = new Array(len);
+
+    // FIXME: 没太看懂，既然值都一样，为什么还要用一个数组？
+    for (let i = 0; i < len; i++) {
+      this.itemsWidth[i] = this.props.maxDescriptionWidth;
+    }
+
+    this.previousStepsWidth = Math.floor($dom.offsetWidth);
+
+    this.fixLastDetailHeight();
+
     const tw = this.itemsWidth.reduce((prev, w) =>
       prev + w
       , 0);
-    const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
+    const dw = Math.floor((this.previousStepsWidth - tw) / (len - 1)) - 1;
     if (dw <= 0) {
       return;
     }
+
     this.setState({
       init: true,
       tailWidth: dw,

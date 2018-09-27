@@ -23,6 +23,7 @@ class Demo extends React.Component {
       s5: 4,
       s6: 2,
       steps: ['a', 'b', 'c', 'd'],
+      stepsStyle2: ['a', 'b'],
     };
 
     this.changeSteps = this.changeSteps.bind(this);
@@ -41,6 +42,7 @@ class Demo extends React.Component {
   changeSteps() {
     this.setState({
       steps: ['a', 'b', 'c'],
+      stepsStyle2: ['a', 'b', 'c', 'd'],
     });
   }
 
@@ -256,10 +258,7 @@ class Demo extends React.Component {
         <h3>横向步骤条(样式二)</h3>
         <div className="demo-box">
           <Steps current={1} showIcon={false}>
-            <Step key={0} title={'步骤一'} description="内容文案内容文案内容文案内容文案" />
-            <Step key={1} title={'步骤二'} description="内容文案内容文案内容文案内容文案" />
-            <Step key={2} title={'步骤三'} description="内容文案内容文案内容文案内容文案" />
-            <Step key={3} title={'步骤四'} description="内容文案内容文案内容文案内容文案" />
+            {this.state.stepsStyle2.map((step, idx) => <Step key={idx} title={`步骤${step}`} description="内容文案内容文案内容文案内容文案" />)}
           </Steps>
         </div>
         <h3>显示时间的步骤条</h3>

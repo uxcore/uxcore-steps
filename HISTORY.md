@@ -1,5 +1,9 @@
 # History
 
+## 2.1.10
+
+`FIXED` fix #19
+
 ## 2.1.9
 
 `CHANGED` support js style export
