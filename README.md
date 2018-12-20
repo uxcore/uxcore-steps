@@ -47,7 +47,7 @@ http://uxcore.github.io/uxcore/components/steps/
 |type | 步骤条类型 | string | `default` `arrow-bar` `title-on-top` `long-desc` or `bottom-desc` | `default` |
 |showDetail | 可选参数[direction=vertical或type=long-desc不生效],是否显示详情面板[step的children] | bool | `true` `false` | `false` |
 |currentDetail | 可选参数[direction=vertical或type=long-desc不生效],指定当前正在显示的详情面板，从0开始记数 | number | `0` ... | `0` |
-|onChange | 可选参数[direction=vertical或type=long-desc不生效],指定步骤icon点击事件回调,参数为被点击步骤对应数字 | func |  | (v)=>{} |
+|onChange | 可选参数[仅仅在 showDetail 或节点为 editable 时生效],指定步骤icon点击事件回调,参数为被点击步骤对应数字 | func |  | (v)=>{} |
 
 ### Steps.Step
 
