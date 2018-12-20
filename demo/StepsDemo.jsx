@@ -98,7 +98,7 @@ class Demo extends React.Component {
         </div>
         <div className="demo-box">
           <Steps current={2} type="bottom-desc">
-            <Step key={0} title={'步骤一'} description="描述文案" />
+            <Step key={0} title={'步骤一'} description="描述文案描述文案描述文案描述文案描述文案描述文案描述文案描述文案描述文案描述文案" />
             <Step key={1} title={'步骤二'} description="描述文案" />
             <Step key={2} title={'步骤三'} description="描述文案" />
             <Step key={3} title={'步骤四'} description="描述文案" />
@@ -126,6 +126,22 @@ class Demo extends React.Component {
             <Step key={1} title={'步骤二'} />
             <Step key={2} title={'步骤三'} status="error" />
             <Step key={3} title={'步骤四'} />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={2} type="title-on-top">
+            <Step key={0} title={'步骤一'} description="描述文案" />
+            <Step key={1} title={'步骤二'} description="描述文案" />
+            <Step key={2} title={'步骤三'} description="描述文案" />
+            <Step key={3} title={'步骤四'} description="描述文案" />
+          </Steps>
+        </div>
+        <div className="demo-box">
+          <Steps current={2} showIcon={false} type="title-on-top">
+            <Step key={0} title={'步骤一'} description="描述文案" />
+            <Step key={1} title={'步骤二'} description="描述文案" />
+            <Step key={2} title={'步骤三'} description="描述文案" />
+            <Step key={3} title={'步骤四'} description="描述文案" />
           </Steps>
         </div>
         <h3>横向步骤条(可返回编辑)</h3>
@@ -165,10 +181,10 @@ class Demo extends React.Component {
           <h3>不可返回编辑</h3>
           <div className="demo-box">
             <Steps current={2} showIcon direction="vertical">
-              <Step key={0} title={'步骤一'} description="描述文字" />
-              <Step key={1} title={'步骤二'} description="描述文字" />
-              <Step key={2} title={'步骤三'} description="描述文字" />
-              <Step key={3} title={'步骤四'} description="描述文字" />
+              <Step key={0} title={'步骤一'} description="描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字" />
+              <Step key={1} title={'步骤二'} description="描述文字描述文字描述文字描述文字描述文字" />
+              <Step key={2} title={'步骤三'} description="描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字" />
+              <Step key={3} title={'步骤四'} description="描述文字描述文字描述文字描述文字描述文字描述文字" />
             </Steps>
           </div>
         </div>

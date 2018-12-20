@@ -1,5 +1,9 @@
 # History
 
+## 2.2.0
+
+`CHANGED` change description layout from absolute to relative mode
+
 ## 2.1.10
 
 `FIXED` fix #19
