@@ -234,7 +234,7 @@ class Steps extends React.Component {
             showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
             detailContentFixStyle: {
               marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx)
-                ? (-(iws[idx] + this.state.tailWidth) * idx) - 41
+                ? (-(iws[idx] + this.state.tailWidth) * idx)
                 : 0,
               width: this.previousStepsWidth,
             },
@@ -249,6 +249,11 @@ class Steps extends React.Component {
             } else {
               np.status = 'wait';
             }
+          }
+
+          // If it's vertical, the step point will take 30px width
+          if (direction === 'vertical') {
+            np.maxDescriptionWidth += 30;
           }
 
           return React.cloneElement(ele, np);

@@ -35,10 +35,11 @@ http://uxcore.github.io/uxcore/components/steps/
 ## Props
 
 ### Steps
+
 | 配置项 | 说明 | 类型 | 可选值 | 默认值 |
 |---|---|---|---|---|
-| prefixCls | prefix class name | string | | kuma-step |
-| className | additional class name added to wrap | string | | |
+|prefixCls | prefix class name | string | | kuma-step |
+|className | additional class name added to wrap | string | | |
 |current | 可选参数，指定当前处理正在执行状态的步骤，从0开始记数。在子Step元素中，可以通过status属性覆盖状态。 | number | 无 | 0|
 |direction | 可选参数，指定步骤条方向（目前支持水平和竖直两种方向，默认水平方向）。 | string | vertical | 无 |
 |maxDescriptionWidth | 可选参数，指定步骤的详细描述文字的最大宽度。 | number | 无 | 100 |
@@ -49,6 +50,7 @@ http://uxcore.github.io/uxcore/components/steps/
 |onChange | 可选参数[direction=vertical或type=long-desc不生效],指定步骤icon点击事件回调,参数为被点击步骤对应数字 | func |  | (v)=>{} |
 
 ### Steps.Step
+
 | 配置项 | 说明 | 类型 | 可选值 | 默认值 |
 |---|---|---|---|---|
 |status | 可选参数，指定状态。当不配置该属性时，会使用父Steps元素的current来自动指定状态。 | string | wait, process, finish, error | wait |
