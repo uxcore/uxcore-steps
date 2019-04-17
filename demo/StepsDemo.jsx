@@ -11,7 +11,6 @@ import Icon from 'uxcore-icon';
 import Steps, { Step } from '../src';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -24,9 +23,23 @@ class Demo extends React.Component {
       s6: 2,
       steps: ['a', 'b', 'c', 'd'],
       stepsStyle2: ['a', 'b'],
+      commonSteps: [
+        { title: '步骤一', desc: '描述文字描述文字描述文字描述文字描述文字描述文' },
+        { title: '步骤二', desc: '描述文字描述文字描述文字描述文字描述文' },
+        { title: '步骤三', desc: '描述文字描述文字描述文字描描述文' },
+        { title: '步骤四', desc: '描述文字描述文字描述文字描述文字描' },
+      ],
+      extraSteps: [],
     };
 
     this.changeSteps = this.changeSteps.bind(this);
+    this.onIncrease = this.onIncrease.bind(this);
+  }
+
+  onIncrease() {
+    this.setState({
+      extraSteps: [...this.state.extraSteps, { title: `步骤${this.state.extraSteps.length}`, desc: Math.random().toString(26).slice(2) }],
+    });
   }
 
   onChange(k, v) {
@@ -46,6 +59,18 @@ class Demo extends React.Component {
     });
   }
 
+  renderExtraStep = () => {
+    return this.state.extraSteps.map((st, i) => (
+      <Step key={i} title={st.title} description={st.desc} />
+    ));
+  }
+
+  renderCommonStep = () => {
+    return this.state.commonSteps.map((st, i) => (
+      <Step key={i} title={st.title} description={st.desc} />
+    ));
+  }
+
   render() {
     const jsxStepTitle = <span style={{ color: '#f60' }}>JSX步骤二</span>;
     const jsxStepDesc = (<div style={{ color: '#999' }}>
@@ -53,6 +78,7 @@ class Demo extends React.Component {
     </div>);
     return (
       <div className="uxcore-steps-demo">
+        <div className="fixed-button"><button type="button" onClick={this.onIncrease}>增加一条</button></div>
         <h3>横向步骤条(横向基础)</h3>
         <button onClick={this.changeSteps}>更新步骤数量</button>
         <div className="demo-box">
@@ -94,6 +120,9 @@ class Demo extends React.Component {
             <Step key={1} title={'步骤二'} icon={<Icon usei name="shezhi" />} />
             <Step key={2} title={'步骤三'} icon={<Icon usei name="youxiang" />} />
             <Step key={3} title={'步骤四'} icon={<Icon usei name="riqiqujian" />} />
+            {
+              this.renderExtraStep()
+            }
           </Steps>
         </div>
         <div className="demo-box">
@@ -181,10 +210,8 @@ class Demo extends React.Component {
           <h3>不可返回编辑</h3>
           <div className="demo-box">
             <Steps current={2} showIcon direction="vertical">
-              <Step key={0} title={'步骤一'} description="描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字" />
-              <Step key={1} title={'步骤二'} description="描述文字描述文字描述文字描述文字描述文字" />
-              <Step key={2} title={'步骤三'} description="描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字" />
-              <Step key={3} title={'步骤四'} description="描述文字描述文字描述文字描述文字描述文字描述文字" />
+              {this.renderCommonStep()}
+              {this.renderExtraStep()}
             </Steps>
           </div>
         </div>
