@@ -42,7 +42,8 @@ describe('Steps', () => {
     it('initialized state', (done) => {
       const i = generateSteps().instance();
       i.render();
-      expect(i.state.init).to.be(false);
+      // unused state init
+      // expect(i.state.init).to.be(false);
       expect(i.state.tailWidth).to.be(0);
       setTimeout(() => {
         expect(i.props.children).to.be.an('array');

@@ -33,9 +33,10 @@ class Demo extends React.Component {
     };
 
     this.changeSteps = this.changeSteps.bind(this);
+    this.onIncrease = this.onIncrease.bind(this);
   }
 
-  onIncrease = () => {
+  onIncrease() {
     this.setState({
       extraSteps: [...this.state.extraSteps, { title: `步骤${this.state.extraSteps.length}`, desc: Math.random().toString(26).slice(2) }],
     });
