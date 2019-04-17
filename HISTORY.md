@@ -1,4 +1,7 @@
 # History
+## 2.2.1
+`FIXED` last step layout cause container overflow
+`FIXED` vertical mode should not calculate width dynamic
 
 ## 2.2.0
 
