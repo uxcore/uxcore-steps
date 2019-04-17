@@ -11,7 +11,6 @@ import Icon from 'uxcore-icon';
 import Steps, { Step } from '../src';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

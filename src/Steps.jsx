@@ -229,7 +229,7 @@ class Steps extends React.Component {
             showIcon,
             stepNumber: idx + 1,
             stepLast: idx === len,
-            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
+            tailWidth: iws.length === 0 || idx === len || direction === 'vertical' ? 'auto' : iws[idx] + this.state.tailWidth,
             prefixCls,
             iconPrefix,
             maxDescriptionWidth,

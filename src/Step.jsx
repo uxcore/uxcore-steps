@@ -133,17 +133,8 @@ class Step extends React.Component {
     }
 
     // Step styles by calculating
-    let stepStyle;
-    if (fixStyle) {
-      stepStyle = {
-        width: tailWidth,
-        ...fixStyle,
-      };
-    } else {
-      stepStyle = {
-        width: tailWidth,
-      };
-    }
+    const stepStyle = fixStyle ? { ...fixStyle } : {};
+    stepStyle.width = tailWidth;
 
     // 节点图标，逻辑：如果用户指定了 icon 就用指定的 icon，否则根据状态确定 icon
     let iconJsx = <span className={`${prefixCls}-icon`} />;
