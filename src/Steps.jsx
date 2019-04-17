@@ -25,6 +25,8 @@ class Steps extends React.Component {
     onChange: () => {
     },
     children: [],
+    // 是否将最后一个元素fix
+    _lastAbsolute: false,
   };
 
   static propTypes = {
@@ -40,13 +42,13 @@ class Steps extends React.Component {
     currentDetail: PropTypes.number,
     onChange: PropTypes.func,
     children: PropTypes.any,
+    _lastAbsolute: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      init: false,
       tailWidth: 0,
     };
     this.previousStepsWidth = 0;
@@ -80,7 +82,7 @@ class Steps extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.children.length !== prevProps.children.length) {
+    if (React.Children.count(this.props.children) !== React.Children.count(prevProps.children)) {
       this.update();
       return;
     }
@@ -90,17 +92,19 @@ class Steps extends React.Component {
     }
 
     this.resize();
-    const $dom = this.root;
-    const len = $dom.children.length - 1;
-
     /*
       * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
       * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
       */
-    for (let i = 0; i <= len; i++) {
-      $dom.children[i].style.position = 'relative';
+    if (this.props._lastAbsolute) {
+      const $dom = this.root;
+      const len = $dom.children.length - 1;
+      // 可以使用:last-child,但这部分功能应该可以移除,就先不动
+      for (let i = 0; i <= len; i++) {
+        $dom.children[i].style.position = 'relative';
+      }
+      $dom.children[len].style.position = 'absolute';
     }
-    $dom.children[len].style.position = 'absolute';
     this.fixLastDetailHeight();
   }
 
@@ -173,7 +177,6 @@ class Steps extends React.Component {
     }
 
     this.setState({
-      init: true,
       tailWidth: dw,
     });
   }
@@ -193,7 +196,7 @@ class Steps extends React.Component {
       currentDetail,
       onChange,
     } = this.props;
-    const len = children.length - 1;
+    const len = React.Children.count(children) - 1;
     const iws = this.itemsWidth;
     let clsName = prefixCls;
     let fixStyle;
