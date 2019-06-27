@@ -8,6 +8,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+function debounce(func, gap) {
+  let lastTime = 0;
+  return (...args) => {
+    if (Date.now() - lastTime < gap) {
+      return;
+    }
+    lastTime = Date.now();
+    func(...args);
+  };
+}
+
 class Steps extends React.Component {
   static displayName = 'Steps';
 
@@ -53,6 +64,7 @@ class Steps extends React.Component {
     };
     this.previousStepsWidth = 0;
     this.itemsWidth = [];
+    this.resize = debounce(this.resize.bind(this), 200);
   }
 
   componentDidMount() {
@@ -61,7 +73,7 @@ class Steps extends React.Component {
       return;
     }
 
-    this.update();
+    this.resize();
 
     /*
      * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
@@ -72,18 +84,16 @@ class Steps extends React.Component {
       this.resize();
     });
 
-    this.resizeBind = this.resize.bind(this);
-
     if (window.attachEvent) {
-      window.attachEvent('onresize', this.resizeBind);
+      window.attachEvent('onresize', this.resize);
     } else {
-      window.addEventListener('resize', this.resizeBind);
+      window.addEventListener('resize', this.resize);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (React.Children.count(this.props.children) !== React.Children.count(prevProps.children)) {
-      this.update();
+      this.resize();
       return;
     }
 
@@ -114,9 +124,9 @@ class Steps extends React.Component {
     }
 
     if (window.attachEvent) {
-      window.detachEvent('onresize', this.resizeBind);
+      window.detachEvent('onresize', this.resize);
     } else {
-      window.removeEventListener('resize', this.resizeBind);
+      window.removeEventListener('resize', this.resize);
     }
   }
 
@@ -126,8 +136,9 @@ class Steps extends React.Component {
     }
 
     this.fixLastDetailHeight();
-
-    const w = Math.floor(this.root.offsetWidth);
+    const computedStyle = getComputedStyle(this.root);
+    const paddingWidth = (Number.parseFloat(computedStyle.paddingLeft) || 0) + (Number.parseFloat(computedStyle.paddingRight) || 0);
+    const w = Math.floor(this.root.offsetWidth - paddingWidth);
     if (this.previousStepsWidth === w) {
       return;
     }
@@ -140,14 +151,15 @@ class Steps extends React.Component {
    * 把整体高度调整为适合高度,处理最后一个detail是绝对定位的问题
    */
   fixLastDetailHeight() {
-    if (this.props.type === 'arrow-bar') {
+    const { type, currentDetail } = this.props;
+    if (type === 'arrow-bar') {
       return;
     }
 
     const $dom = this.root;
     const len = $dom.children.length - 1;
     const $domLastDetail = $dom.children[len];
-    if (this.props.currentDetail === len && $dom.offsetHeight <= $domLastDetail.offsetHeight) {
+    if (currentDetail === len && $dom.offsetHeight <= $domLastDetail.offsetHeight) {
       $dom.style.height = `${$domLastDetail.offsetHeight}px`;
     } else {
       $dom.style.height = 'auto';
@@ -155,22 +167,14 @@ class Steps extends React.Component {
   }
 
   update() {
+    const { maxDescriptionWidth } = this.props;
     const $dom = this.root;
     const len = $dom.children.length;
-    this.itemsWidth = new Array(len);
-
-    // FIXME: 没太看懂，既然值都一样，为什么还要用一个数组？
-    for (let i = 0; i < len; i++) {
-      this.itemsWidth[i] = this.props.maxDescriptionWidth;
-    }
-
-    this.previousStepsWidth = Math.floor($dom.offsetWidth);
+    this.itemsWidth = new Array(len).fill(maxDescriptionWidth);
 
     this.fixLastDetailHeight();
 
-    const tw = this.itemsWidth.reduce((prev, w) =>
-      prev + w
-      , 0);
+    const tw = len * maxDescriptionWidth;
     const dw = Math.floor((this.previousStepsWidth - tw) / (len - 1)) - 1;
     if (dw <= 0) {
       return;

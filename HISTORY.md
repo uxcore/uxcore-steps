@@ -1,4 +1,7 @@
 # History
+## 2.2.2
+`FIXED` when padding width of ownerElement is not 0 will lead to line break;
+
 ## 2.2.1
 `FIXED` last step layout cause container overflow
 `FIXED` vertical mode should not calculate width dynamic
